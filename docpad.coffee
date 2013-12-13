@@ -21,7 +21,7 @@ docpadConfig = {
 			]
 
 			# The default title of our website
-			title: "Your Website"
+			title: "Menu Groupe Scolaire Sophie Barat"
 
 			# The website description (for SEO)
 			description: """
@@ -80,6 +80,9 @@ docpadConfig = {
 			_.map scripts, (value) ->
 				return value.replace 'out', ''
 
+	collections:
+		"menus": ->
+			@getCollection("documents").findAllLive({relativeOutDirPath:'menus'})
 
 	# =================================
 	# DocPad Events

@@ -33,20 +33,21 @@
     "npm": "1.1.x"
   },
   "dependencies": {
-		"docpad": "6.x",
-		"docpad-plugin-coffeescript": "2.x",
-		"docpad-plugin-eco": "2.x",
-		"docpad-plugin-marked": "2.x",
-		"docpad-plugin-partials": "2.x",
-		"docpad-plugin-stylus": "2.x",
-		"docpad-plugin-text": "2.x",
+    "docpad": "6.x",
+    "docpad-plugin-coffeescript": "2.x",
+    "docpad-plugin-eco": "2.x",
+    "docpad-plugin-marked": "~2.1.2",
+    "docpad-plugin-partials": "2.x",
+    "docpad-plugin-stylus": "2.x",
+    "docpad-plugin-text": "2.x",
     "grunt": "~0.3.17",
     "grunt-css": "~0.3.2",
     "bal-util": "~1.15.3",
-    "underscore": "~1.4.3"
+    "underscore": "~1.4.3",
+    "docpad-plugin-cson": "~2.0.1"
   },
   "devDependencies": {
-		"docpad-plugin-livereload": "2.x"
+    "docpad-plugin-livereload": "~2.5.4"
   },
   "main": "node_modules/docpad/bin/docpad-server"
 }

@@ -1,0 +1,20 @@
+{
+  "name": "gssb-menu",
+  "version": "0.0.1",
+  "homepage": "https://github.com/evantill/gssb-menu",
+  "authors": [
+    "Eric Vantillard <eric.vantillard@evaxion.fr>"
+  ],
+  "description": "Gestion des Menus de la cantine pour l'Apel GSSB",
+  "main": "?",
+  "keywords": [
+    "apel","gssb","menu","cantine"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "out"
+  ]
+}
