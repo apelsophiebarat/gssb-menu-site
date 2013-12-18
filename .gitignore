@@ -20,3 +20,7 @@ node_modules
 ### docpad ###
 .docpad.db
 /out/
+
+### bower ###
+/bower_components
+/src/files/vendor

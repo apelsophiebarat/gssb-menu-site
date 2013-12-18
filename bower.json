@@ -1,0 +1,49 @@
+{
+  "name": "gssb-menu",
+  "version": "0.0.1",
+  "homepage": "https://github.com/evantill/gssb-menu",
+  "authors": [
+    "Eric Vantillard <eric.vantillard@evaxion.fr>"
+  ],
+  "description": "Gestion des Menus de la cantine pour l'Apel GSSB",
+  "main": "?",
+  "keywords": [
+    "apel",
+    "gssb",
+    "menu",
+    "cantine"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "out"
+  ],
+  "dependencies": {
+    "jquery": "~2.0.3",
+    "bootstrap": "~3.0.3",
+    "modernizr": "~2.7.1",
+    "momentjs": "~2.4.0",
+    "respond": "~1.4.1"
+  },
+  "exportsOverride": {
+    "bootstrap": {
+      "js-min": "dist/js/*.min.js",
+      "js": "dist/js/*.js",
+      "fonts": "dist/fonts/*",
+      "css": "dist/css/*"
+    },
+    "modernizr": {
+      "js": "modernizr.js"
+    },
+    "respond": {
+      "js": "dest/*.js"
+    }, 
+    "*": {
+      "js-min": "*.min.js",
+      "js": "*.js",
+      "css": "*.css"
+    }
+  }
+}
