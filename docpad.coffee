@@ -5,6 +5,10 @@
 docpadConfig = {
   templateData:
     site:
+      googleanalytics:
+        account: 'UA-XXXXX-X'
+      year: "2013"
+      company: "Company"
       title: "Title here"
       description: "description here"
       projectName: "Project Name"
@@ -20,8 +24,11 @@ docpadConfig = {
     preferredMethods: ['watchFile','watch']
 	plugins:
     grunt:
-      generateBefore: ['bower:install']
+      docpadReady: ['bower:install']
       writeAfter: false
+  collections:
+    navigationPages: ->
+      @getCollection("html").findAll({navigation:true},[{navigationOrder:1}])
 }
 
 # Export the DocPad Configuration

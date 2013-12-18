@@ -25,7 +25,8 @@
     "bootstrap": "~3.0.3",
     "modernizr": "~2.7.1",
     "momentjs": "~2.4.0",
-    "respond": "~1.4.1"
+    "respond": "~1.4.1",
+    "console-polyfill": "~0.1.0"
   },
   "exportsOverride": {
     "bootstrap": {
@@ -39,7 +40,7 @@
     },
     "respond": {
       "js": "dest/*.js"
-    }, 
+    },
     "*": {
       "js-min": "*.min.js",
       "js": "*.js",

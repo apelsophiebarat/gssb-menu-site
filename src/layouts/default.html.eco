@@ -19,28 +19,19 @@
         <script src="vendor/respond/js/respond.min.js"></script>
     </head>
     <body>
-    <!--[if lt IE 7]>
-        <p class="chromeframe"><%- @site.outdatedWarning %></p>
-    <![endif]-->
+        <!--[if lt IE 7]>
+            <p class="chromeframe"><%- @site.outdatedWarning %></p>
+        <![endif]-->
 
-    <%- @partial('navigation') %>
+        <%- @partial('navigation') %>
+        <%- @content %>
+        <%- @partial('footer') %>
 
-    <%- @content %>
-    
-    <%- @getBlock('scripts').toHTML() %>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <%- @getBlock('scripts').toHTML() %>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="vendor/jquery/js/jquery.min.js"><\/script>')</script>
-
-        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
-        <script src="js/plugins.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>        
         <script src="js/main.js"></script>
-
-        <script>
-            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src='//www.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
-        </script>
+        <%- @partial('google-analytics') %>
     </body>
 </html>
