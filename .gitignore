@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Created by http://gitignore.io
 
 ### Node ###
@@ -24,3 +25,7 @@ node_modules
 ### bower ###
 /bower_components
 /src/files/vendor
+=======
+node_modules/
+out/
+>>>>>>> 3690b9741ef429f75f06c93dd048bc03bd2811e9
