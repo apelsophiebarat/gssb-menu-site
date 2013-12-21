@@ -1,0 +1,32 @@
+.restauration
+  ul.list-unstyled 
+    li 
+      padding-left 1.5em
+      margin-left 1.5em  
+    span.glyphicon 
+      margin-left -1.5em
+    
+  h3 
+    border-bottom 1px solid gray
+
+  .glyphicon-cutlery 
+    color #800
+  
+  .glyphicon-leaf 
+    color #084
+
+@media print
+  body
+    padding 0
+    margin 0
+  .restauration
+    h2
+      font-size 16px
+    h3
+      font-size 14px
+    h4
+      font-size 12px
+    *
+      font-size 12px
+
+  

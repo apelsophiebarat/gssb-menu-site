@@ -1,6 +1,0 @@
-<div class="container">
-  <hr>
-  <footer>
-    <p>&copy; <%= @site.company %> <%= @site.year %></p>
-  </footer>
-</div>

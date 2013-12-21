@@ -1,0 +1,41 @@
+---
+layout: 'restauration/menus'
+---
+{{#parseJSON content}}
+{{#prepareMenu}}
+h2.text-center {{titre}}
+{{#jours}}
+h3
+  span.glyphicon.glyphicon-calendar
+  {{jour}}
+.row
+  {{#plats}}
+  .col-sm-6.hidden-print
+    {{map type 'label' plats='plats' legumes='légumes'}}
+    h4 {{label}}
+    ul.list-unstyled
+      {{#each liste}}
+      {{map type 'icon' plats='cutlery' legumes='leaf'}}
+      li
+        span(class="pull-left glyphicon glyphicon-{{icon}}")
+        {{text}}
+      {{/each}}
+  .col-xs-6.visible-print
+    {{map type 'label' plats='plats' legumes='légumes'}}
+    h4 {{label}}
+    ul.list-unstyled
+      {{#each liste}}
+      {{map type 'icon' plats='cutlery' legumes='leaf'}}
+      li
+        span(class="pull-left glyphicon glyphicon-{{icon}}")
+        {{text}}
+      {{/each}}
+  {{/plats}}
+{{/jours}}
+{{#if remarques}}
+.panel.panel-default
+  .panel-body {{remarques}}
+{{/if}}
+{{/prepareMenu}}
+{{/parseJSON}}
+
