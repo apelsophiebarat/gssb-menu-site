@@ -3,8 +3,6 @@ layout: 'restauration/menu'
 comments: true
 styles: ['/css/restauration.css']
 title: "Menu 2/12/2013"
-navigation: true
-navigationOrder: 4
 ---
 {
   titre: "Menu de la semaine du 2 au 6 décembre 2013"

@@ -47,6 +47,8 @@ docpadConfig = {
   collections:
     navigationPages: ->
       @getCollection("html").findAll({navigation:true},[{navigationOrder:1}])
+    menuPages: ->
+      @getCollection("html").findAll({relativeOutDirPath:"restauration/menus"},[{basename:-1}])
 }
 
 injector = require('./lib/handlebars-helpers-injector')

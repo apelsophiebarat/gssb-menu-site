@@ -1,6 +1,10 @@
 ---
 layout: 'restauration/menus'
 ---
+{{debug}}
+{{document.meta.relativePath}}
+{{document.meta.relativeOutPath}}
+
 {{#parseJSON content}}
 {{#prepareMenu}}
 h2.text-center {{titre}}
