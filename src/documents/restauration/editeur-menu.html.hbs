@@ -1,0 +1,169 @@
+---
+jours: ["Lundi","Mardi","Mercredi","Jeudi","Vendredi"]
+---
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>
+    </title>
+    <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/vendor/bootstrap-datepicker/css/datepicker3.css">
+    <link rel="stylesheet" type="text/css" href="/css/editeur-menu.css">
+  </head>
+  
+  <body>
+    <div class="container" id="menu-container">
+      <form class="form-horizontal" role="form" id="menu-form">
+        <!-- saisie semaine -->
+        <div class="form-group row">
+          <label for="inputWeek" class="col-sm-2 control-label">Semaine</label>
+          <div class="col-sm-10">
+            <div class="input-group date" id="inputWeek">
+              <input type="text" class="form-control" placeholder="choisir la semaine">
+              <span class="input-group-addon"><span class="hidden-xs">Choisir </span>
+                <span class="glyphicon glyphicon-th"></span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="panel-group" id="panelGroupJours">
+          {{#each document.jours}}
+          <!--{{this}}-->
+          <div class="panel panel-default">
+            <!--debut du panel jour-->
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a  data-toggle="collapse" 
+                    data-parent="#panelGroupJours" 
+                    href="#panel{{this}}" 
+                    class="collapsed">{{this}}</a>
+              </h4>
+            </div>
+            <div id="panel{{this}}" class="panel-collapse collapse in">
+              <div class="panel-body">
+                <!--contenu jour-->
+                <!-- saisie des plats du jour -->
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Plats du jour</label>
+                  <div class="col-sm-10">
+                    <!-- saisie d'un plat -->
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="description du plat">
+                      <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><span class="hidden-xs">Ajouter </span>
+                      <span class="glyphicon glyphicon-plus"></span>
+                      </button>
+                      <button class="btn btn-default" type="button">
+                        <span class="hidden-xs">Supprimer </span>
+                        <span class="glyphicon glyphicon-minus"></span>
+                      </button>
+                      </span>
+                    </div>
+                    <!-- saisie d'un plat -->
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="description du plat">
+                      <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><span class="hidden-xs">Ajouter </span>
+                      <span class="glyphicon glyphicon-plus"></span>
+                      </button>
+                      <button class="btn btn-default" type="button">
+                        <span class="hidden-xs">Supprimer </span>
+                        <span class="glyphicon glyphicon-minus"></span>
+                      </button>
+                      </span>
+                    </div>
+                    <!-- saisie d'un plat -->
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="description du plat">
+                      <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><span class="hidden-xs">Ajouter </span>
+                      <span class="glyphicon glyphicon-plus"></span>
+                      </button>
+                      <button class="btn btn-default" type="button">
+                        <span class="hidden-xs">Supprimer </span>
+                        <span class="glyphicon glyphicon-minus"></span>
+                      </button>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <!-- saisie des légumes du jour -->
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Légumes du jour</label>
+                  <div class="col-sm-10">
+                    <!-- saisie d'un légume -->
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="description du légume">
+                      <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><span class="hidden-xs">Ajouter </span>
+                      <span class="glyphicon glyphicon-plus"></span>
+                      </button>
+                      <button class="btn btn-default" type="button">
+                        <span class="hidden-xs">Supprimer </span>
+                        <span class="glyphicon glyphicon-minus"></span>
+                      </button>
+                      </span>
+                    </div>
+                    <!-- saisie d'un légume -->
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="description du légume">
+                      <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><span class="hidden-xs">Ajouter </span>
+                      <span class="glyphicon glyphicon-plus"></span>
+                      </button>
+                      <button class="btn btn-default" type="button">
+                        <span class="hidden-xs">Supprimer </span>
+                        <span class="glyphicon glyphicon-minus"></span>
+                      </button>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--fin contenu jour-->
+            </div>
+          </div>
+          {{/each}}
+          <div class="panel panel-default on">
+            <!--debut du panel jour-->
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#panelGroupJours" href="#panelCommun">Commun à l'ensemble de la semaine</a>
+              </h4>
+            </div>
+            <div id="panelCommun" class="panel-collapse collapse in">
+              <div class="panel-body">
+                <!-- remarques -->
+                <div class="form-group">
+                  <label class="col-sm-2">
+                    Remarques
+                  </label>
+                  <div class="col-sm-10">
+                    <textarea class="form-control" rows="5" placeholder="remarques valables sur l'ensemble des jours de la semaine"></textarea>
+                  </div>
+                </div>
+              </div>
+              <!--fin contenu jour-->
+            </div>
+          </div>
+          <!--fin du panel jour vendredi-->
+          <div>
+            <button type="submit" class="btn btn-primary pull-left col-sm-4">Enregistrer</button>
+            <button type="reset" class="btn btn-default pull-right col-sm-4">Effacer</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <script charset="UTF-8" type="text/javascript" src="/vendor/jquery/js/jquery.min.js"></script>
+    <script charset="UTF-8" type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script charset="UTF-8" type="text/javascript" src="/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script charset="UTF-8" type="text/javascript" src="/vendor/bootstrap-datepicker/js/bootstrap-datepicker.fr.js"></script>
+    <script charset="UTF-8" type="text/javascript" src="/js/editeur-menu.js"></script>
+  </body>
+
+</html>

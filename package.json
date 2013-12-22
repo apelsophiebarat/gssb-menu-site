@@ -7,7 +7,12 @@
     "node": "0.10",
     "npm": "1.3"
   },
-  "keywords": ["apel","gssb","menu","cantine"],
+  "keywords": [
+    "apel",
+    "gssb",
+    "menu",
+    "cantine"
+  ],
   "homepage": "https://github.com/evantill/gssb-menu",
   "author": "Bevry Pty Ltd <us@bevry.me> (http://bevry.me)",
   "repository": {
@@ -35,6 +40,8 @@
   },
   "devDependencies": {
     "docpad-plugin-html2jade": "~2.0.3",
-    "docpad-plugin-livereload": "~2.5.4"
+    "docpad-plugin-livereload": "~2.5.4",
+    "docpad-plugin-stylus": "~2.5.0",
+    "docpad-plugin-coffee": "~2.0.2"
   }
 }
