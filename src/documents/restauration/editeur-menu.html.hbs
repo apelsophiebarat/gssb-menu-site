@@ -23,12 +23,23 @@ jours: ["Lundi","Mardi","Mercredi","Jeudi","Vendredi"]
         <div class="form-group row">
           <label for="inputWeek" class="col-sm-2 control-label">Semaine</label>
           <div class="col-sm-10">
-            <div class="input-group date" id="inputWeek">
-              <input type="text" class="form-control" placeholder="choisir la semaine">
+            <div class="input-group date" id="inputWeek" tabIndex="-1">              
+              <input type="text" class="form-control" placeholder="sélectionner une date">
               <span class="input-group-addon"><span class="hidden-xs">Choisir </span>
                 <span class="glyphicon glyphicon-th"></span>
               </span>
             </div>
+            <!--or 
+            <div class="input-group input-daterange" id="inputWeek" tabIndex="-1">
+              <span class="input-group-addon">du</span>
+              <input type="text" class="form-control" placeholder="cliquer" name="start">
+              <span class="input-group-addon">au</span>
+              <input type="text" class="form-control" placeholder="cliquer" name="end">
+              <span class="input-group-addon"><span class="hidden-xs">Choisir </span>
+                <span class="glyphicon glyphicon-th"></span>
+              </span>
+            </div>
+            -->
           </div>
         </div>
         <div class="panel-group" id="panelGroupJours">
@@ -40,6 +51,7 @@ jours: ["Lundi","Mardi","Mercredi","Jeudi","Vendredi"]
               <h4 class="panel-title">
                 <a  data-toggle="collapse" 
                     data-parent="#panelGroupJours" 
+                    tabIndex="-1"
                     href="#panel{{this}}" 
                     class="collapsed">{{this}}</a>
               </h4>
@@ -133,7 +145,11 @@ jours: ["Lundi","Mardi","Mercredi","Jeudi","Vendredi"]
             <!--debut du panel jour-->
             <div class="panel-heading">
               <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#panelGroupJours" href="#panelCommun">Commun à l'ensemble de la semaine</a>
+                <a 
+                  data-toggle="collapse" 
+                  data-parent="#panelGroupJours" 
+                  tabIndex="-1"
+                  href="#panelCommun">Commun à l'ensemble de la semaine</a>
               </h4>
             </div>
             <div id="panelCommun" class="panel-collapse collapse in">
@@ -163,6 +179,7 @@ jours: ["Lundi","Mardi","Mercredi","Jeudi","Vendredi"]
     <script charset="UTF-8" type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script charset="UTF-8" type="text/javascript" src="/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
     <script charset="UTF-8" type="text/javascript" src="/vendor/bootstrap-datepicker/js/bootstrap-datepicker.fr.js"></script>
+    <script charset="UTF-8" type="text/javascript" src="/vendor/momentjs/js/moment-with-langs.min.js"></script>
     <script charset="UTF-8" type="text/javascript" src="/js/editeur-menu.js"></script>
   </body>
 
