@@ -2,7 +2,7 @@
 # http://docpad.org/docs/config
 
 # Define the DocPad Configuration
-docpadConfig = {
+module.exports =
   templateData:
     site:
       googleanalytics:
@@ -24,23 +24,27 @@ docpadConfig = {
       """
   watchOptions:
     preferredMethods: ['watchFile','watch']
-	plugins:
+  plugins:
     emailobfuscator:
         emailAddresses:
             restauration: "commission.restauration@apelsophiebarat.net"
     #handlebars plugin configuration
-    handlebars:
+    handlebarshelpers:
+      helpersExtension: [
+        './lib/handlebars-helpers-common',
+        './lib/handlebars-helpers-docpad',
+        './lib/handlebars-helpers-restauration'
+      ]
       helpers:
         getStylesBlock: () ->
           output = @getBlock('styles').add(@document.styles or []).toHTML()
-        # Expose docpads 'getBlock' function to handlebars
+
         isCurrentPage: (pageId, options) ->
           documentId = options.data?.document?.id
           output = if pageId is documentId then 'active' else 'inactive'
       partials:
         title: '<h1>{{document.title}}</h1>'
         goUp: '<a href="#">Scroll up</a>'
-    #grunt plugin configuration
     grunt:
       docpadReady: ['bower:install']
       writeAfter: false
@@ -49,15 +53,3 @@ docpadConfig = {
       @getCollection("html").findAll({navigation:true},[{navigationOrder:1}])
     menuPages: ->
       @getCollection("html").findAll({relativeOutDirPath:"restauration/menus"},[{basename:-1}])
-}
-
-injector = require('./lib/handlebars-helpers-injector')
-commonHelpers = require('./lib/handlebars-helpers-common')
-docpadHelpers = require('./lib/handlebars-helpers-docpad')
-restaurationHelpers = require('./lib/restauration').helpers
-injector.injectHelpers(docpadConfig,commonHelpers)
-injector.injectHelpers(docpadConfig,docpadHelpers)
-injector.injectHelpers(docpadConfig,restaurationHelpers)
-
-# Export the DocPad Configuration
-module.exports = docpadConfig

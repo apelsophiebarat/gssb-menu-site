@@ -3,10 +3,13 @@ layout: 'restauration/menu'
 comments: true
 styles: ['/css/restauration.css']
 title: "Menu 2/12/2013"
+titre: "Menu de la semaine du 02 au 06 décembre 2013"
+du: "02/12/2013"
+au: "06/12/2013"
 ---
 {
-  titre: "Menu de la semaine du 2 au 6 décembre 2013"
-  Lundi:
+  du: "02/12/2013"
+  lundi:
     plats: [
       "Raviolis au gruyère"
       "Selle d'agneau aux champignons des bois"
@@ -16,7 +19,7 @@ title: "Menu 2/12/2013"
       "Blé au jus"
       "Epinards à la crème"
     ]
-  Mardi:
+  mardi:
     plats: [
       "Couscous poulet-merguez maison"
     ]
@@ -24,7 +27,7 @@ title: "Menu 2/12/2013"
       "Semoule de couscous"
       "Haricots verts persillés"
     ]
-  Mercredi:
+  mercredi:
     plats: [
       "Lasagne bolognaise"
       "Dos de cabillaud sauce à l'estragon"
@@ -33,7 +36,7 @@ title: "Menu 2/12/2013"
       "Riz basmati"
       "Endives braisées"
     ]
-  Jeudi:
+  jeudi:
     plats: [
       "Omelette à la forestière"
       "Rôti de dinde au jus"
@@ -42,7 +45,7 @@ title: "Menu 2/12/2013"
       "Pommes vapeur persillées"
       "Carottes à la crème"
     ]
-  Vendredi:
+  vendredi:
     plats: [
       "Spaghettis à la carbonara"
       "Filet de lieu à l'anethoise"
@@ -51,5 +54,7 @@ title: "Menu 2/12/2013"
       "Spaghettis"
       "Gratin de choux fleurs"
     ]
-  remarques: "bon appétit"
+  remarques: [
+    "bon appétit"
+  ]
 }

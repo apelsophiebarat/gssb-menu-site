@@ -27,7 +27,9 @@
     "momentjs": "~2.4.0",
     "respond": "~1.4.1",
     "console-polyfill": "~0.1.0",
-    "bootstrap-datepicker": "https://github.com/eternicode/bootstrap-datepicker.git#master"
+    "bootstrap-datepicker": "https://github.com/eternicode/bootstrap-datepicker.git#master",
+    "requirejs": "~2.1.9",
+    "angular": "~1.2.6"
   },
   "exportsOverride": {
     "bootstrap": {

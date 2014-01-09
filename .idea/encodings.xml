@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
+    <file url="file://$PROJECT_DIR$/lib/handlebars-helpers-common.coffee" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lib/handlebars-helpers-docpad.coffee" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lib/handlebars-helpers-injector.coffee" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lib/model.coffee" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lib/restauration.coffee" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lib/week2.coffee" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/documents/js/test-github.coffee" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/documents/restauration/menus/2013-12-13-menu-de-la-semaine.json.cson" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/layouts/restauration/menu.html.hbs.jade" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/layouts/restauration/menus.html.hbs.jade" charset="UTF-8" />
+  </component>
+</project>
+

@@ -1,13 +1,13 @@
 ---
 layout: 'restauration/menus'
 ---
-{{#parseJSON content}}
+{{#parseContentAsJSON}}
 {{#prepareMenu}}
 h2.text-center {{titre}}
 {{#jours}}
 h3
   span.glyphicon.glyphicon-calendar
-  {{jour}}
+  |  {{capitalize jour}}
 .row
   {{#plats}}
   .col-sm-6.hidden-print
@@ -37,5 +37,5 @@ h3
   .panel-body {{remarques}}
 {{/if}}
 {{/prepareMenu}}
-{{/parseJSON}}
+{{/parseContentAsJSON}}
 

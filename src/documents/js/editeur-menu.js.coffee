@@ -1,3 +1,24 @@
+menuEditorApp = angular.module('MenuEditorApp',[])
+
+menuEditorController = menuEditorApp.controller 'MenuEditorController', [
+  '$scope','$http','$templateCache',($scope,$http,$templateCache) ->
+    $scope.jours = ["Lundi","Mardi","Mercredi","Jeudi","Vendredi"]
+    $scope.loadMenu = (name) ->
+      url = '/restauration/menus/2013-12-13-menu-de-la-semaine.json'
+      $http.get(url).success (rawData,status) ->
+        console.log(rawData)
+        console.log(rawData.content)
+        data  = JSON.parse(rawData?.content)
+        menu =
+          jours:[]
+        for jour in $scope.jours
+          jourData =
+            titre:jour
+            data:data[jour]
+          menu.jours.push jourData
+        $scope.menu = menu
+  ]
+
 
 class Week
   constructor: (jsDate) ->

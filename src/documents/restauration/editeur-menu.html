@@ -2,7 +2,7 @@
 jours: ["Lundi","Mardi","Mercredi","Jeudi","Vendredi"]
 ---
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="MenuEditorApp">
   
   <head>
     <meta charset="utf-8">
@@ -14,10 +14,34 @@ jours: ["Lundi","Mardi","Mercredi","Jeudi","Vendredi"]
     <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/vendor/bootstrap-datepicker/css/datepicker3.css">
     <link rel="stylesheet" type="text/css" href="/css/editeur-menu.css">
+    <script charset="UTF-8" type="text/javascript" src="/vendor/angular/js/angular.js"></script>
   </head>
   
   <body>
-    <div class="container" id="menu-container">
+
+<div class="form-group">
+  <label class="col-sm-2 control-label">{{label}}</label>
+  <div class="col-sm-10">
+    <!-- saisie d'un plat -->
+    <div class="input-group" ng-repeat="plat in jour.data.plats">
+      <input type="text" class="form-control" placeholder="description du plat" ng-model="plat">
+      <span class="input-group-btn">
+    <button class="btn btn-default" type="button"><span class="hidden-xs">Ajouter </span>
+      <span class="glyphicon glyphicon-plus"></span>
+      </button>
+      <button class="btn btn-default" type="button">
+        <span class="hidden-xs">Supprimer </span>
+        <span class="glyphicon glyphicon-minus"></span>
+      </button>
+      </span>
+    </div>
+  </div>
+</div>  
+    <script type="text/ng-template">
+
+    </script>
+
+    <div class="container" id="menu-container" ng-controller="MenuEditorController">
       <form class="form-horizontal" role="form" id="menu-form">
         <!-- saisie semaine -->
         <div class="form-group row">
@@ -43,20 +67,19 @@ jours: ["Lundi","Mardi","Mercredi","Jeudi","Vendredi"]
           </div>
         </div>
         <div class="panel-group" id="panelGroupJours">
-          {{#each document.jours}}
-          <!--{{this}}-->
-          <div class="panel panel-default">
-            <!--debut du panel jour-->
+          {{menu.titre}}
+          <div class="panel panel-default" ng-repeat="jour in menu.jours">
+            <!--debut du panel {{jour.titre}}-->
             <div class="panel-heading">
               <h4 class="panel-title">
                 <a  data-toggle="collapse" 
                     data-parent="#panelGroupJours" 
                     tabIndex="-1"
-                    href="#panel{{this}}" 
-                    class="collapsed">{{this}}</a>
+                    href="#panel{{jour.titre}}" 
+                    class="collapsed">{{jour.titre}}</a>
               </h4>
             </div>
-            <div id="panel{{this}}" class="panel-collapse collapse in">
+            <div id="panel{{jour}}" class="panel-collapse collapse in">
               <div class="panel-body">
                 <!--contenu jour-->
                 <!-- saisie des plats du jour -->
@@ -64,34 +87,8 @@ jours: ["Lundi","Mardi","Mercredi","Jeudi","Vendredi"]
                   <label class="col-sm-2 control-label">Plats du jour</label>
                   <div class="col-sm-10">
                     <!-- saisie d'un plat -->
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="description du plat">
-                      <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><span class="hidden-xs">Ajouter </span>
-                      <span class="glyphicon glyphicon-plus"></span>
-                      </button>
-                      <button class="btn btn-default" type="button">
-                        <span class="hidden-xs">Supprimer </span>
-                        <span class="glyphicon glyphicon-minus"></span>
-                      </button>
-                      </span>
-                    </div>
-                    <!-- saisie d'un plat -->
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="description du plat">
-                      <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><span class="hidden-xs">Ajouter </span>
-                      <span class="glyphicon glyphicon-plus"></span>
-                      </button>
-                      <button class="btn btn-default" type="button">
-                        <span class="hidden-xs">Supprimer </span>
-                        <span class="glyphicon glyphicon-minus"></span>
-                      </button>
-                      </span>
-                    </div>
-                    <!-- saisie d'un plat -->
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="description du plat">
+                    <div class="input-group" ng-repeat="plat in jour.data.plats">
+                      <input type="text" class="form-control" placeholder="description du plat" ng-model="plat">
                       <span class="input-group-btn">
                     <button class="btn btn-default" type="button"><span class="hidden-xs">Ajouter </span>
                       <span class="glyphicon glyphicon-plus"></span>
@@ -109,21 +106,8 @@ jours: ["Lundi","Mardi","Mercredi","Jeudi","Vendredi"]
                   <label class="col-sm-2 control-label">Légumes du jour</label>
                   <div class="col-sm-10">
                     <!-- saisie d'un légume -->
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="description du légume">
-                      <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><span class="hidden-xs">Ajouter </span>
-                      <span class="glyphicon glyphicon-plus"></span>
-                      </button>
-                      <button class="btn btn-default" type="button">
-                        <span class="hidden-xs">Supprimer </span>
-                        <span class="glyphicon glyphicon-minus"></span>
-                      </button>
-                      </span>
-                    </div>
-                    <!-- saisie d'un légume -->
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="description du légume">
+                    <div class="input-group" ng-repeat="legume in jour.data.legumes">
+                      <input type="text" class="form-control" placeholder="description du légume" ng-model="legume">
                       <span class="input-group-btn">
                     <button class="btn btn-default" type="button"><span class="hidden-xs">Ajouter </span>
                       <span class="glyphicon glyphicon-plus"></span>
@@ -140,7 +124,7 @@ jours: ["Lundi","Mardi","Mercredi","Jeudi","Vendredi"]
               <!--fin contenu jour-->
             </div>
           </div>
-          {{/each}}
+          
           <div class="panel panel-default on">
             <!--debut du panel jour-->
             <div class="panel-heading">
@@ -169,7 +153,7 @@ jours: ["Lundi","Mardi","Mercredi","Jeudi","Vendredi"]
           </div>
           <!--fin du panel jour vendredi-->
           <div>
-            <button type="submit" class="btn btn-primary pull-left col-sm-4">Enregistrer</button>
+            <button type="submit" class="btn btn-primary pull-left col-sm-4" ng-click="loadMenu('xxx')">Enregistrer</button>
             <button type="reset" class="btn btn-default pull-right col-sm-4">Effacer</button>
           </div>
         </div>
@@ -180,7 +164,7 @@ jours: ["Lundi","Mardi","Mercredi","Jeudi","Vendredi"]
     <script charset="UTF-8" type="text/javascript" src="/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
     <script charset="UTF-8" type="text/javascript" src="/vendor/bootstrap-datepicker/js/bootstrap-datepicker.fr.js"></script>
     <script charset="UTF-8" type="text/javascript" src="/vendor/momentjs/js/moment-with-langs.min.js"></script>
-    <script charset="UTF-8" type="text/javascript" src="/js/editeur-menu.js"></script>
+    <script charset="UTF-8" type="text/javascript" src="/js/editeur-menu.js"></script>    
   </body>
 
 </html>

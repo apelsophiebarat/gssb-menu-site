@@ -4,7 +4,7 @@
   remarques: "..."
   jours: [
     {
-      jour: "Lundi"
+      jour: "lundi"
       plats: [
         {
           type: "plats"
@@ -27,49 +27,50 @@
   ]
 }
 ###
+Week = require('./week')
 
-prepareMenu = (data) ->
-  output = {
-    titre: data.titre
-    remarques: data.remarques
+prepareMenuData = (data) ->
+  console.log('\n\n')
+  date = data?.document.date or new Date
+  console.log(typeof Week)
+  week = new Week(date)
+  output =
+    du: week.from
+    au: week.to
+    titre: prepareTitre(week)
+    remarques: data.content.remarques
     jours: prepareDays(data)
-  }
+
+prepareTitre = (week) ->
+  "Menu de la semaine du #{week.from.format('DD MMMM YYYY')} au #{week.to.format('DD MMMM YYYY')}"
 
 prepareDays = (data) ->
   days = []
-  for day in ["Lundi","Mardi","Mercredi","Jeudi","Vendredi"]
-    if data[day]
-      days.push(prepareDay(day,data[day]))
+  for day in ["lundi","mardi","mercredi","jeudi","vendredi"]
+    if data.content[day]
+      days.push(prepareDay(day,data.content[day]))
   days
 
 prepareDay = (day,data) ->
-  output = {
+  output =
     jour: day
     plats: [
       preparePlats('plats',data['plats']),
       preparePlats('legumes',data['legumes'])
     ]
-  }
 
 preparePlats = (type, liste) ->
-  output = {
+  output =
     type: type,
     liste: for text in liste then preparePlat(type,text)
-  }
 
 preparePlat = (type,text) ->
-  output = {
+  output =
     type: type
     text: text
-  }
-  
-helpers = {
+
+module.exports =
   prepareMenu: (options) ->
-    content = prepareMenu(@)
+    content = prepareMenuData(@)
     options.fn(content)
 
-}
-
-module.exports = {
-  helpers: helpers
-}
