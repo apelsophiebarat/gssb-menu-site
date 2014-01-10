@@ -1,0 +1,24 @@
+---
+layout: 'default'
+title: 'Archives'
+navigation: true
+navigationTitle: 'Archives'
+navigationOrder: 2
+comments: true
+---
+.jumbotron
+  .container
+    h1 {{document.title}}
+    p
+      | Vous trouverez la liste de l'ensemble des menus.
+.container
+  .alert.alert-warning.alert-dismissable
+    button.close(type="button" data-dismiss="alert" aria-hidden="true")
+      | &times;
+    strong Attention!
+    |  Les menus des semaines à venirs sont à titre indicatif
+  ul
+    {{#eachCollection 'menuArchives'}}
+    li
+      a(href='{{url}}') {{title}}
+    {{/eachCollection}}

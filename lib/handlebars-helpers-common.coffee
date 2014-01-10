@@ -26,6 +26,7 @@ module.exports =
 		console.log('content: '+JSON.stringify(content))
 		console.log('options: '+JSON.stringify(options))
 		output = undefined
+	debugger: -> debugger
 	capitalize: (content) ->
 		content.charAt(0).toUpperCase() + content.slice(1)
 

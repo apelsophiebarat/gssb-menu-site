@@ -10,7 +10,7 @@
       ul.nav.navbar-nav
         {{#eachCollection 'navigationPages'}}
         li(class='{{isCurrentPage id}}')
-          a(href='{{url}}') {{title}}
+          a(href='{{url}}') {{navigationTitle}}
         {{/eachCollection}}
         li.dropdown
           a.dropdown-toggle(href='#', data-toggle='dropdown')
@@ -19,15 +19,13 @@
           ul.dropdown-menu
             {{#eachCollection 'menuPages'}}
             li(class='{{isCurrentPage id}}')
-              a(href='{{url}}') {{title}}
+              a(href='{{url}}') {{navigationTitle}}
             {{/eachCollection}}
             li.divider
-            li.dropdown-header Nav header
+            li.dropdown-header Personnel authorisé uniquement
             li
-              a(href='/restauration/editeur-menu.html') Editeur
+              a(href='/restauration/editeur-menu.html') Ajouter un menu
       form.navbar-form.navbar-right.hidden-xs.hidden-sm
         .form-group
-          input.form-control(type='text', placeholder='Email')
-        .form-group
-          input.form-control(type='password', placeholder='Password')
-        button.btn.btn-success(type='submit') Sign in
+          input.form-control(type='text', placeholder='Addresse email')
+        button.btn.btn-success(type='submit') S'abonner

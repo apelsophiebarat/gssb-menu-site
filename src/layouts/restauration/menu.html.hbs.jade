@@ -5,9 +5,13 @@ layout: 'restauration/menus'
 {{#prepareMenu}}
 h2.text-center {{titre}}
 {{#jours}}
-h3
+h3(id='{{jourId}}')
   span.glyphicon.glyphicon-calendar
   |  {{capitalize jour}}
+  {{#if today}}
+  span.badge.pull-right
+    |Aujourd'hui
+  {{/if}}
 .row
   {{#plats}}
   .col-sm-6.hidden-print

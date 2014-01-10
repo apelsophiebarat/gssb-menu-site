@@ -1,11 +1,6 @@
 moment = require 'moment'
 
-asMoment = (date) ->
-  if date
-    if moment.isMoment(date) then date
-    else moment(date)
-  else
-    moment()
+{asMoment} = require './utils'
 
 class Week
   constructor: (date) ->
@@ -22,7 +17,7 @@ class Week
     new Week(asMoment(date))
 
   isInWeek: (date) =>
-    date = moment(asMoment(date))
+    date = asMoment(date)
     @from.isBefore(date) and @to.isAfter(date)
 
   days: () ->

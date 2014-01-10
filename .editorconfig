@@ -12,5 +12,8 @@ insert_final_newline = true
 [*.md]
 trim_trailing_whitespace = false
 
+[*.jade]
+trim_trailing_whitespace = false
+
 [*.coffee]
 indent_style = tab

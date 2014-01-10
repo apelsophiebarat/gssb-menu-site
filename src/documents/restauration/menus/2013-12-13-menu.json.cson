@@ -2,13 +2,10 @@
 layout: 'restauration/menu'
 comments: true
 styles: ['/css/restauration.css']
-title: "Menu 2/12/2013"
-titre: "Menu de la semaine du 02 au 06 décembre 2013"
-du: "02/12/2013"
-au: "06/12/2013"
+title: "Menu de la semaine du 02 au 06 décembre 2013"
+navigationTitle: "du 02 au 06 décembre"
 ---
 {
-  du: "02/12/2013"
   lundi:
     plats: [
       "Raviolis au gruyère"

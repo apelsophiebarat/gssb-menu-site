@@ -2,17 +2,7 @@ _ = require 'underscore'
 moment = require 'moment'
 cson = require 'cson'
 
-asMoment = (date) ->
-  date =? new Date
-  if moment.isMoment(date) then date
-  else moment(date)
-
-weekdayName = (date) -> asMoment(date).format('dddd')
-
-removeFromArray = (elem,arr) ->
-	pos = arr?.indexOf(elem)
-	if pos then arr.splice(pos,1)
-	else arr
+{asMoment,weekdayName,removeFromArray} = require './utils'
 
 titre = (menu) ->
 	"Menu de la semaine du #{menu.week.from.format('DD MMMM YYYY')} au #{menu.week.to.format('DD MMMM YYYY')}"

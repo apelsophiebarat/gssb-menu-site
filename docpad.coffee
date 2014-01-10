@@ -5,11 +5,11 @@
 module.exports =
   templateData:
     site:
+      services:
+        disqus: 'apelgssb'
       googleanalytics:
         account: 'UA-XXXXX-X'
-      disqus:
-        shortname: 'apelgssb'
-      year: "2013"
+      year: "2014"
       company: "Apel Sophie Barat"
       title: "Apel Sophie Barat"
       description: "Apel Sophie Barat - Application Menu Restauration"
@@ -30,6 +30,7 @@ module.exports =
             restauration: "commission.restauration@apelsophiebarat.net"
     #handlebars plugin configuration
     handlebarshelpers:
+      debug:true
       helpersExtension: [
         './lib/handlebars-helpers-common',
         './lib/handlebars-helpers-docpad',
@@ -52,4 +53,6 @@ module.exports =
     navigationPages: ->
       @getCollection("html").findAll({navigation:true},[{navigationOrder:1}])
     menuPages: ->
+      @getCollection("html").findAll({relativeOutDirPath:"restauration/menus"},[{basename:-1}])
+    menuArchives: ->
       @getCollection("html").findAll({relativeOutDirPath:"restauration/menus"},[{basename:-1}])

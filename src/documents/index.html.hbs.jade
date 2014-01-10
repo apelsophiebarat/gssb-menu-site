@@ -1,35 +1,23 @@
 ---
 layout: 'default'
-title: 'Home page'
+title: 'Menu de cette semaine'
 navigation: true
 navigationOrder: 1
+navigationTitle: 'Cette semaine'
+comments: true
 ---
-// Main jumbotron for a primary marketing message or call to action
 .jumbotron
   .container
     h1 {{document.title}}
+    p.
+      Bonjour et bienvenu sur le nouveau site de l'Apel avec le détails des menus de la catine du groupe scolaire Sophie Barat.
+      Merci de nous laisser un commentaire en bas de page si vous avez des remarques.
     p
-      | This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
-    p
-      a.btn.btn-primary.btn-lg Learn more »
+      a.btn.btn-primary.btn-lg(href='#today') Menu d'Aujourd'hui »
+
 .container
-  // Example row of columns
-  .row
-    .col-lg-4
-      h2 Heading
-      p
-        | Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-      p
-        a.btn.btn-default(href='#') View details »
-    .col-lg-4
-      h2 Heading
-      p
-        | Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-      p
-        a.btn.btn-default(href='#') View details »
-    .col-lg-4
-      h2 Heading
-      p
-        | Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-      p
-        a.btn.btn-default(href='#') View details »
+  #today
+    h2 Le menu de cette semaine ne nous à pas été communiqué.
+    p
+      | Vous pouvez consulter les&nbsp;
+      a.btn.btn-default.btn-sm(href='/archives.html') archives»
