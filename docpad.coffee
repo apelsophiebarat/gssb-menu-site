@@ -5,10 +5,10 @@
 module.exports =
   templateData:
     site:
+      url: 'http://apelsophiebarat.net'
       services:
         disqus: 'apelgssb'
-      googleanalytics:
-        account: 'UA-XXXXX-X'
+        googleAnalytics: 'UA-XXXXX-X'
       year: "2014"
       company: "Apel Sophie Barat"
       title: "Apel Sophie Barat"
@@ -22,6 +22,8 @@ module.exports =
        installer le plugin Google Chrome Frame</a>
        pour améliorer votre navigation sur internet.
       """
+    mailchimp:
+        correspondantsRestauration: 'http://apelsophiebarat.us3.list-manage.com/subscribe/post?u=09c087e63bef0442598264fcc&id=8951f44253'
   watchOptions:
     preferredMethods: ['watchFile','watch']
   plugins:

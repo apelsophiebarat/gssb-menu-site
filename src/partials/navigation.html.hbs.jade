@@ -25,7 +25,7 @@
             li.dropdown-header Personnel authorisé uniquement
             li
               a(href='/restauration/editeur-menu.html') Ajouter un menu
-      form.navbar-form.navbar-right.hidden-xs.hidden-sm
+      form.navbar-form.navbar-right.hidden-xs.hidden-sm(action='{{mailchimp.correspondantsRestauration}}', method='post', target='_blank')
         .form-group
-          input.form-control(type='text', placeholder='Addresse email')
-        button.btn.btn-success(type='submit') S'abonner
+          input.form-control(type='email', placeholder='Addresse email',name='EMAIL')
+        button.btn.btn-success(type='submit' name='subscribe') S'abonner
