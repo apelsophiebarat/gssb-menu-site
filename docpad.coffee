@@ -27,7 +27,7 @@ module.exports =
   plugins:
     emailobfuscator:
         emailAddresses:
-            restauration: "commission.restauration@apelsophiebarat.net"
+            restauration: "correspondants.restauration@apelsophiebarat.net"
     #handlebars plugin configuration
     handlebarshelpers:
       debug:true
