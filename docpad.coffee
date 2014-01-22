@@ -2,6 +2,8 @@
 # http://docpad.org/docs/config
 
 # Define the DocPad Configuration
+_ = require 'lodash'
+
 module.exports =
   templateData:
     site:
@@ -23,25 +25,49 @@ module.exports =
        pour améliorer votre navigation sur internet.
       """
     mailchimp:
-        correspondantsRestauration: 'http://apelsophiebarat.us3.list-manage.com/subscribe/post?u=09c087e63bef0442598264fcc&id=8951f44253'
+        correspondantsRestauration:
+          action: 'http://apelsophiebarat.us3.list-manage.com/subscribe/post?u=09c087e63bef0442598264fcc&id=8951f44253'
+          stopBotCode: 'b_09c087e63bef0442598264fcc_8951f44253'
+    getPreparedTitle: ->
+      # if we have a document title, then we should use that and suffix the site's title onto it
+      if @document.title
+        "#{@document.title} | #{@site.title}"
+      # if our document does not have it's own title, then we should just use the site's title
+      else
+        @site.title
   watchOptions:
     preferredMethods: ['watchFile','watch']
   plugins:
+    schoolmenu:
+      menuRelativeOutDirPath: "restauration/menus"
+      defaultMetas :
+        layout: 'menu'
+        comments: true
+        styles: [
+          '/css/restauration.css',
+          '/css/cantine-font-styles.css'
+        ]
+        scripts: '/js/restauration.js'
+    repocloner:
+      repos: [
+          name: 'gssb-menus-repo'
+          path: 'src/documents/restauration/menus'
+          branch: 'master'
+          url: 'https://github.com/apelsophiebarat/gssb-menus-repo.git'
+      ]
+    rss:
+      collection: 'menus'
+      url: '/rss.xml' # optional, this is the default
     emailobfuscator:
         emailAddresses:
             restauration: "correspondants.restauration@apelsophiebarat.net"
     #handlebars plugin configuration
     handlebarshelpers:
-      debug:true
       helpersExtension: [
-        './lib/handlebars-helpers-common',
-        './lib/handlebars-helpers-docpad',
-        './lib/handlebars-helpers-restauration'
+        './src/files/js/handlebars/handlebars-helpers-common',
+        './src/files/js/handlebars/handlebars-helpers-docpad'
       ]
       helpers:
-        getStylesBlock: () ->
-          output = @getBlock('styles').add(@document.styles or []).toHTML()
-
         isCurrentPage: (pageId, options) ->
           documentId = options.data?.document?.id
           output = if pageId is documentId then 'active' else 'inactive'
@@ -54,7 +80,44 @@ module.exports =
   collections:
     navigationPages: ->
       @getCollection("html").findAll({navigation:true},[{navigationOrder:1}])
-    menuPages: ->
-      @getCollection("html").findAll({relativeOutDirPath:"restauration/menus"},[{basename:-1}])
-    menuArchives: ->
-      @getCollection("html").findAll({relativeOutDirPath:"restauration/menus"},[{basename:-1}])
+    menus: ->
+      @getCollection("documents").findAll({relativeOutDirPath: {$startsWith: 'restauration/menus'}},[basename:-1])
+    menusForArchive: ->
+      @getCollection("documents").findAll({relativeOutDirPath: {$startsWith: 'restauration/menus'}},[basename:-1])
+      if(true)
+        return @getCollection("menus")
+      else
+        ###
+         TODO :
+            dupliquer les entrees pour chaque valeur de tag
+            grouper par tag
+              pour chaque tag
+                grouper par annees
+                  pour chaque annees
+                    grouper par mois
+        ###
+        menus = @getCollection("menus")
+        separateByTagValues = (coll) ->
+          output=[]
+          for elem in coll
+            for tag in elem.meta.tag
+              output.push
+                keys:
+                  tag: tag
+                  year: elem.meta.year
+                  month: elem.meta.month
+                content: elem
+          return output
+        menusWithKeys = separateByTagValues(menus)
+        groupByTags = (coll) -> _(coll).groupBy('keys.tag').each(groupByYear).value()
+        groupByYear = (coll,tag) -> _(coll).groupBy('keys.year').each(groupByMonth).value()
+        groupByMonth = (coll,year) -> _.groupBy(coll,'keys.month')
+        return groupByTags(menusWithKeys)
+
+
+
+
+
+
+
+

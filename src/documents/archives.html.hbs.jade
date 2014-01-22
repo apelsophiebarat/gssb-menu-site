@@ -1,10 +1,10 @@
 ---
 layout: 'default'
-title: 'Archives'
+title: 'Archives des menus'
 navigation: true
 navigationTitle: 'Archives'
-navigationOrder: 2
-comments: true
+navigationOrder: 4
+comments: false
 ---
 .jumbotron
   .container
@@ -18,7 +18,8 @@ comments: true
     strong Attention!
     |  Les menus des semaines à venirs sont à titre indicatif
   ul
-    {{#eachCollection 'menuArchives'}}
+    {{#eachCollection 'menusForArchive'}}
     li
-      a(href='{{url}}') {{title}}
+      a(href='{{url}}')
+        | {{menu.getPreparedTitleLong}}
     {{/eachCollection}}

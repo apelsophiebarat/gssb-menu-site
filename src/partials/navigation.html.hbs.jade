@@ -17,15 +17,18 @@
             | Menus
             b.caret
           ul.dropdown-menu
-            {{#eachCollection 'menuPages'}}
-            li(class='{{isCurrentPage id}}')
-              a(href='{{url}}') {{navigationTitle}}
-            {{/eachCollection}}
+            {s{#eachCollection 'menus'}}
+            li(class='{s{isCurrentPage id}}')
+              a(href='{s{url}}') {s{url}}
+            {s{/eachCollection}}
             li.divider
             li.dropdown-header Personnel authorisé uniquement
             li
               a(href='/restauration/editeur-menu.html') Ajouter un menu
-      form.navbar-form.navbar-right.hidden-xs.hidden-sm(action='{{mailchimp.correspondantsRestauration}}', method='post', target='_blank')
+      form.navbar-form.navbar-right.hidden-xs.hidden-sm(action='{{mailchimp.correspondantsRestauration.action}}', method='post', target='_blank', novalidate='')
         .form-group
-          input.form-control(type='email', placeholder='Addresse email',name='EMAIL')
+          input.form-control#mailchimp-email(type='email', value='', name='EMAIL', placeholder='adresse email', required='')
+          //- real people should not fill this in and expect good things - do not remove this or risk form bot signups
+          span(style='position: absolute; left: -5000px;')
+            input.form-control(type='text', name='{{mailchimp.correspondantsRestauration.stopBotCode}}', value='')
         button.btn.btn-success(type='submit' name='subscribe') S'abonner

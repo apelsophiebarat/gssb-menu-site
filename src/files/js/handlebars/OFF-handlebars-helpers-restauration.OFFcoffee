@@ -1,38 +1,10 @@
-###
-{
-  titre: "..."
-  remarques: "..."
-  jours: [
-    {
-      jour: "lundi"
-      plats: [
-        {
-          type: "plats"
-          liste: [
-            {
-              type: "plats"
-              text: "p1"
-            },{
-              ...
-            }
-          ]
-        },{
-          type: "legumes"
-          liste: ...
-        }
-      ]
-    },{
-      ...
-    }
-  ]
-}
-###
-Week = require './week'
-{today,weekdayName} = require './utils'
+{today,weekdayName} = require '../restauration/utils'
+SchoolWeek = require '../restauration/SchoolWeek'
 
 prepareMenuData = (data) ->
-  date = data?.document.date or new Date
-  week = new Week(date)
+  return {} unless data
+  date = data.document.date or new Date
+  week = new SchoolWeek(date)
   output =
     du: week.from
     au: week.to

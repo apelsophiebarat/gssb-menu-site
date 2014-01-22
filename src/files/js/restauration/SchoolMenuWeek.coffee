@@ -4,6 +4,41 @@ cson = require 'cson'
 
 {asMoment,weekdayName,removeFromArray} = require './utils'
 
+SchoolWeek = require './SchoolWeek'
+
+class SchoolMenuWeek
+	constructor: ->
+		@week = new Week()
+		@days = []
+		@comments = []
+
+
+	@parse: (raw) ->
+		week = SchoolWeek.parse(raw.date)
+
+
+	addComment: (text) ->
+		@comments.push(new Comment(text)) if text?
+
+
+
+
+class Comments
+	constructor: (@text)
+
+class Course
+	constructor: (@type, @description)
+
+	@newStarter: (description) -> new Course('starter',description or '')
+	@newMainCourse: (description) -> new Course('mainCourse',description or '')
+	@newDessert: (description) -> new Course('dessert',description or '')
+
+	@types: -> ['starter','mainCourse','dessert']
+
+
+
+
+
 titre = (menu) ->
 	"Menu de la semaine du #{menu.week.from.format('DD MMMM YYYY')} au #{menu.week.to.format('DD MMMM YYYY')}"
 

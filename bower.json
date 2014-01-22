@@ -29,9 +29,15 @@
     "console-polyfill": "~0.1.0",
     "bootstrap-datepicker": "https://github.com/eternicode/bootstrap-datepicker.git#master",
     "requirejs": "~2.1.9",
-    "angular": "~1.2.6"
+    "angular": "~1.2.6",
+    "full-glyphicons": "https://github.com/evantill/full-glyphicons.git#feature-bower",
+    "date.format": "~1.2.3"
   },
   "exportsOverride": {
+    "full-glyphicons": {
+      "css": "css/*",
+      "img": "img/*"
+    },
     "bootstrap": {
       "js-min": "dist/js/*.min.js",
       "js": "dist/js/*.js",
