@@ -45,7 +45,9 @@
     "lodash": "~2.4.1",
     "docpad-plugin-multiplelayouts": "~2.0.2",
     "docpad-plugin-eco": "~2.0.3",
-    "docpad-plugin-repocloner": "~2.2.1"
+    "docpad-plugin-repocloner": "~2.2.1",
+    "docpad-plugin-schoolmenu": "git://github.com/apelsophiebarat/docpad-plugin-schoolmenu.git",
+    "docpad-plugin-handlebarshelpers": "git://github.com/apelsophiebarat/docpad-plugin-handlebarshelpers.git"
   },
   "main": "node_modules/docpad/bin/docpad-server",
   "scripts": {

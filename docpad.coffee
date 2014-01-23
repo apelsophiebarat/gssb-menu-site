@@ -7,7 +7,7 @@ _ = require 'lodash'
 module.exports =
   templateData:
     site:
-      url: 'http://apelsophiebarat.net'
+      url: 'http://gssb-menu.herokuapp.com'
       services:
         disqus: 'apelgssb'
         googleAnalytics: 'UA-XXXXX-X'
