@@ -3,19 +3,30 @@
 
 # Define the DocPad Configuration
 _ = require 'lodash'
+moment = require 'moment'
+
+websiteVersion = require('./package.json').version
+
+siteUrl =
+  if process.env.NODE_ENV is 'production'
+    "http://www.menu.apelsophiebarat.net"
+  else
+    "http://localhost:9778"
 
 module.exports =
   templateData:
+    now: -> moment()
     site:
-      url: 'http://gssb-menu.herokuapp.com'
-      services:
-        disqus: 'apelgssb'
-        googleAnalytics: 'UA-XXXXX-X'
-      year: "2014"
-      company: "Apel Sophie Barat"
       title: "Apel Sophie Barat"
       description: "Apel Sophie Barat - Application Menu Restauration"
+      url: siteUrl
+      company: "Apel Sophie Barat"
       projectName: "Apel Sophie Barat"
+      year: "2014"
+      version: websiteVersion
+      services:
+        disqus: 'apelgssb'
+        googleAnalytics: 'UA-45066763-2'
       outdatedWarning: """
       Votre version de navigateur <strong>n'est pas à jour</strong>.
        Veuillez <a href="http://browsehappy.com/">installer une version
@@ -25,9 +36,9 @@ module.exports =
        pour améliorer votre navigation sur internet.
       """
     mailchimp:
-        correspondantsRestauration:
-          action: 'http://apelsophiebarat.us3.list-manage.com/subscribe/post?u=09c087e63bef0442598264fcc&id=8951f44253'
-          stopBotCode: 'b_09c087e63bef0442598264fcc_8951f44253'
+      correspondantsRestauration:
+        action: 'http://apelsophiebarat.us3.list-manage.com/subscribe/post?u=09c087e63bef0442598264fcc&id=8951f44253'
+        stopBotCode: 'b_09c087e63bef0442598264fcc_8951f44253'
     getPreparedTitle: ->
       # if we have a document title, then we should use that and suffix the site's title onto it
       if @document.title
@@ -39,15 +50,24 @@ module.exports =
     preferredMethods: ['watchFile','watch']
   plugins:
     schoolmenu:
-      menuRelativeOutDirPath: "restauration/menus"
-      defaultMetas :
-        layout: 'menu'
-        comments: true
-        styles: [
-          '/css/restauration.css',
-          '/css/cantine-font-styles.css'
-        ]
-        scripts: '/js/restauration.js'
+      layouts:
+        rss: 'menu-rss' #unused
+        html: 'menu-html' #unused
+      metas:
+        rss: {} #unused
+        html: {} #unused
+        json:
+          author: 'correspondants.restauration@apelsophiebarat.net'
+          layout: 'menu'
+          comments: true
+          styles: [
+            '/css/restauration.css',
+            '/css/cantine-font-styles.css'
+          ]
+          scripts: '/js/restauration.js'
+      selector:
+        query:
+          relativeOutDirPath: $startsWith: 'restauration/menus'
     repocloner:
       repos: [
           name: 'gssb-menus-repo'
@@ -55,17 +75,14 @@ module.exports =
           branch: 'master'
           url: 'https://github.com/apelsophiebarat/gssb-menus-repo.git'
       ]
-    rss:
-      collection: 'menus'
-      url: '/rss.xml' # optional, this is the default
     emailobfuscator:
         emailAddresses:
             restauration: "correspondants.restauration@apelsophiebarat.net"
     #handlebars plugin configuration
     handlebarshelpers:
       helpersExtension: [
-        './src/files/js/handlebars/handlebars-helpers-common',
-        './src/files/js/handlebars/handlebars-helpers-docpad'
+        './lib/handlebars-helpers-common',
+        './lib/handlebars-helpers-docpad'
       ]
       helpers:
         isCurrentPage: (pageId, options) ->
@@ -77,15 +94,24 @@ module.exports =
     grunt:
       docpadReady: ['bower:install']
       writeAfter: false
+    rss:
+      collection: 'menus'
+      url: '/rss.xml'
   collections:
     navigationPages: ->
-      @getCollection("html").findAll({navigation:true},[{navigationOrder:1}])
+      @getCollection("html").findAllLive({navigation:true},[{navigationOrder:1}])
     menus: ->
-      @getCollection("documents").findAll({relativeOutDirPath: {$startsWith: 'restauration/menus'}},[basename:-1])
+      @getDatabase().findAllLive({relativeOutDirPath: {$startsWith: 'restauration/menus'}},[basename:-1])
+    menusForToday: ->
+      #collection = @getDatabase().findAllLive({relativeOutDirPath: {$startsWith: 'restauration/menus'}},[basename:-1])
+      #now = moment()
+      #collection.setFilter 'onlyPresentAndFuture',  (model) ->
+      #  return not model.menu.week.isBeforeWeek(now)
+      #return collection
+      @getDatabase().findAllLive({relativeOutDirPath: {$startsWith: 'restauration/menus'}},[basename:-1])
     menusForArchive: ->
-      @getCollection("documents").findAll({relativeOutDirPath: {$startsWith: 'restauration/menus'}},[basename:-1])
       if(true)
-        return @getCollection("menus")
+        return @getDatabase().findAllLive({relativeOutDirPath: {$startsWith: 'restauration/menus'}},[basename:-1])
       else
         ###
          TODO :
@@ -113,7 +139,13 @@ module.exports =
         groupByYear = (coll,tag) -> _(coll).groupBy('keys.year').each(groupByMonth).value()
         groupByMonth = (coll,year) -> _.groupBy(coll,'keys.month')
         return groupByTags(menusWithKeys)
-
+  environments:
+    development:
+      templateData:
+        site:
+          services:
+            disqus: false
+            googleAnalytics: false
 
 
 

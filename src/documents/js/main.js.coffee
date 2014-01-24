@@ -7,3 +7,6 @@ jQuery ($) ->
       $('html, body').animate({
         scrollTop: $(this).offset().top - navOffset
       }, scrollDuration)
+
+if window.location.pathname == '/' or window.location.pathname.indexOf("today") > -1
+  window.location.replace("http://www.menu.apelsophiebarat.net/restauration/menus/2014-01-20-menu-primaire-college-lycee.html")
