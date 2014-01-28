@@ -13,6 +13,13 @@ siteUrl =
   else
     "http://localhost:9778"
 
+joinArray = (array,sep=',',prefix='',suffix='',lastSep=sep) ->
+      return '' unless array and array.length > 0
+      array = [].concat(array)
+      lastElem = array.pop()
+      joinedArray = [array.join(sep),lastElem].join(lastSep)
+      [prefix,joinedArray,suffix].join('')
+
 module.exports =
   templateData:
     now: -> moment()
@@ -50,25 +57,49 @@ module.exports =
     preferredMethods: ['watchFile','watch']
   plugins:
     schoolmenu:
-      layouts:
-        rss: 'menu-rss' #unused
-        html: 'menu-html' #unused
-      metas:
-        rss: {} #unused
-        html: {} #unused
-        json:
-          author: 'correspondants.restauration@apelsophiebarat.net'
-          layout: 'menu'
-          comments: true
-          styles: [
-            '/css/restauration.css',
-            '/css/cantine-font-styles.css'
-          ]
-          scripts: '/js/restauration.js'
-      selector:
-        query:
-          relativeOutDirPath: $startsWith: 'restauration/menus'
-    repocloner:
+      writeMeta: true
+      writeAddedMeta: undefined
+      query: relativeOutDirPath: $startsWith: 'restauration/menus'
+      defaultMeta:
+        author: 'correspondants.restauration@apelsophiebarat.net'
+        layout: 'menu'
+        additionalLayouts: ['menujson','menurss']
+        comments: true
+        styles: [
+          '/css/restauration.css',
+          '/css/cantine-font-styles.css'
+        ]
+        scripts: '/js/restauration.js'
+      templateData:
+        tagsForTitle: (menu) ->
+          menu or= @menu
+          menu.schoolLevels.join(', ')
+        prepareLongTitle: (menu) ->
+          menu or= @menu
+          week = menu.week
+          schoolLevels = joinArray(menu.schoolLevels,', ','pour ','',' et ')
+          from = week.from.format('DD MMMM YYYY')
+          to = week.to.format('DD MMMM YYYY')
+          "Menu #{schoolLevels} de la semaine du #{from} au #{to}"
+        prepareTitle: (menu) ->
+          menu or= @menu
+          week = menu.week
+          from = week.from.format('DD MMMM YYYY')
+          to = week.to.format('DD MMMM YYYY')
+          "Menu pour la semaine du #{from} au #{to}"
+        prepareShortTitle: (menu) ->
+          menu or= @menu
+          week = menu.week
+          from = week.from.format('DD MMM')
+          to = week.to.format('DD MMM YYYY')
+          "Menu du #{from} au #{to}"
+        prepareNavTitle: (menu) ->
+          menu or= @menu
+          week = menu.week
+          from = week.from.format('DD MMM YYYY')
+          to = week.to.format('DD MMM YYYY')
+          "#{from} --> #{to}"
+    OFFrepocloner:
       repos: [
           name: 'gssb-menus-repo'
           path: 'src/documents/restauration/menus'
@@ -95,23 +126,35 @@ module.exports =
       docpadReady: ['bower:install']
       writeAfter: false
     rss:
-      collection: 'menus'
+      collection: 'menusForRss'
       url: '/rss.xml'
   collections:
     navigationPages: ->
-      @getCollection("html").findAllLive({navigation:true},[{navigationOrder:1}])
+      @getCollection("html").findAllLive(navigation:true,[navigationOrder:1])
     menus: ->
-      @getDatabase().findAllLive({relativeOutDirPath: {$startsWith: 'restauration/menus'}},[basename:-1])
+      query =
+        relativeOutDirPath: $startsWith: 'restauration/menus'
+        layout: 'menu'
+      @getFiles(query,[basename:-1])
+    menusForRss: ->
+      query =
+        relativeOutDirPath: $startsWith: 'restauration/menus'
+        layout: 'menurss'
+      @getFiles(query,[basename:-1])
     menusForToday: ->
       #collection = @getDatabase().findAllLive({relativeOutDirPath: {$startsWith: 'restauration/menus'}},[basename:-1])
       #now = moment()
       #collection.setFilter 'onlyPresentAndFuture',  (model) ->
       #  return not model.menu.week.isBeforeWeek(now)
       #return collection
-      @getDatabase().findAllLive({relativeOutDirPath: {$startsWith: 'restauration/menus'}},[basename:-1])
+      @getDatabase().findAllLive(relativeOutDirPath: $startsWith: 'restauration/menus',[basename:-1])
+
     menusForArchive: ->
       if(true)
-        return @getDatabase().findAllLive({relativeOutDirPath: {$startsWith: 'restauration/menus'}},[basename:-1])
+        query =
+          relativeOutDirPath: $startsWith: 'restauration/menus'
+          layout: 'menu'
+        return @getFiles(query,[basename:-1])
       else
         ###
          TODO :

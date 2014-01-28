@@ -42,7 +42,9 @@
     "handlebars": "~1.3.0",
     "lodash": "~2.4.1",
     "moment": "~2.5.0",
-    "underscore": "~1.5.2"
+    "underscore": "~1.5.2",
+    "docpad-plugin-multiplelayouts": "~2.0.2",
+    "docpad-plugin-raw": "~2.2.3"
   },
   "main": "node_modules/docpad/bin/docpad-server",
   "scripts": {

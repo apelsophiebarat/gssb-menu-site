@@ -4,19 +4,17 @@ layout: 'menus'
 //-script(src="/vendor/jquery/js/jquery.min.js")}}
 //-script(src="/vendor/date.format/js/date.format.js")
 //-script(src="/js/restauration.js")
-{{#with document}}
 //-titre
 h2.text-center
   span.hidden-print
     span.hidden-xs.hidden-sm
-      | {{simpleTitle}}&nbsp;
+      | {{prepareTitle}}&nbsp;
       span.small {{tagsForTitle}}
     span.visible-xs.visible-sm
-      | {{shortTitle}}&nbsp;
+      | {{prepareShortTitle}}&nbsp;
       span.small {{tagsForTitle}}
   span.visible-print
-    | {{title}}
-{{/with}}
+    | {{prepareLongTitle}}
 {{#with menu}}
 //-loop on days
 {{#each days}}
@@ -71,7 +69,7 @@ h3(id="{{formatMoment this.date fmt='YYYY-MM-DD'}}")
 {{#if comments}}
 .panel.panel-default
   .panel-body
-    {{#each comments.comments}}
+    {{#each comments}}
     p {{this}}
     {{/each}}
 {{/if}}

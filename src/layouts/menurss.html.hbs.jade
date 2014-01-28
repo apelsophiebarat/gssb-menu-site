@@ -1,0 +1,27 @@
+//-titre
+h2 {{prepareLongTitle}}
+{{#with menu}}
+//-loop on days
+{{#each days}}
+//-title
+ul
+  li
+    h3(id="{{formatMoment this.date fmt='YYYY-MM-DD'}}")
+      |&nbsp;{{capitalize name}}
+    ul
+      //-loop on courses types
+      {{#each coursesGroupedByType}}
+      {{map type 'label' entree='entrées' plat='plats' legume='légumes' dessert='desserts'}}
+      li
+        h4 {{label}}
+        ul
+          {{#each courses}}
+          li {{description}}
+          {{/each}}
+      {{/each}}
+{{/each}}
+
+{{#each comments}}
+p {{this}}
+{{/each}}
+{{/with}}

@@ -12,7 +12,7 @@ module.exports = (grunt)->
                 #exclude: ['modernizr', 'sass-bootstrap', 'qtip2']
         install:
           options:
-            targetDir: './src/files/vendor'
+            targetDir: './src/raw/vendor'
             layout: (type, component) ->
                 realType=type
                 minSuffix = type.indexOf('-min')
@@ -28,7 +28,7 @@ module.exports = (grunt)->
             bowerOptions: {}
       clean:
         docpad: ['.docpad.db','out']
-        bower: ['bower_components','./src/files/vendor']
+        bower: ['bower_components','./src/raw/vendor']
         node: ['node_modules']
 
     grunt.loadNpmTasks 'grunt-bower-task'
