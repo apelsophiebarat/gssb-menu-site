@@ -1,6 +1,6 @@
 {
   "name": "gssb-menu",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": true,
   "description": "Apel Sophie Barat - Application Menu Restauration",
   "engines": {
@@ -25,12 +25,12 @@
     "docpad-plugin-coffee": "~2.0.2",
     "docpad-plugin-emailobfuscator": "~2.0.0",
     "docpad-plugin-grunt": "~2.1.1",
-    "docpad-plugin-handlebarshelpers": "git://github.com/apelsophiebarat/docpad-plugin-handlebarshelpers.git",
+    "docpad-plugin-handlebarshelpers": "git://github.com/apelsophiebarat/docpad-plugin-handlebarshelpers.git#v2.0.1",
     "docpad-plugin-jade": "~2.6.2",
     "docpad-plugin-partials": "~2.8.1",
     "docpad-plugin-repocloner": "~2.2.1",
-    "docpad-plugin-rss": "~2.0.1",
-    "docpad-plugin-schoolmenu": "git://github.com/apelsophiebarat/docpad-plugin-schoolmenu.git",
+    "docpad-plugin-rss": "git://github.com/apelsophiebarat/docpad-plugin-rss.git#v2.1.1",
+    "docpad-plugin-schoolmenu": "git://github.com/apelsophiebarat/docpad-plugin-schoolmenu.git#v2.2.0",
     "docpad-plugin-services": "~2.5.0",
     "docpad-plugin-stylus": "~2.5.0",
     "extendr": "~2.1.0",
