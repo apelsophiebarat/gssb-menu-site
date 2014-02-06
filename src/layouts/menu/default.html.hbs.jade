@@ -1,31 +1,29 @@
 ---
-layout: 'menus'
+layout: 'menu/menus'
 ---
 //-script(src="/vendor/jquery/js/jquery.min.js")}}
 //-script(src="/vendor/date.format/js/date.format.js")
 //-script(src="/js/restauration.js")
 //-titre
+{{#with menu}}
+{{#with formatter.toJSON}}
 h2.text-center
   span.hidden-print
     span.hidden-xs.hidden-sm
-      | {{prepareTitle}}&nbsp;
-      span.small {{tagsForTitle}}
+      | {{title.long}}&nbsp;
+      .small {{schoolLevels.simple}}
     span.visible-xs.visible-sm
-      | {{prepareShortTitle}}&nbsp;
-      span.small {{tagsForTitle}}
+      | {{title.short}}&nbsp;
+      .small {{schoolLevels.simple}}
   span.visible-print
-    | {{prepareLongTitle}}
-{{#with menu}}
+    | {{title.longWithTags}}
+{{/with}}
 //-loop on days
 {{#each days}}
 //-title
 h3(id="{{formatMoment this.date fmt='YYYY-MM-DD'}}")
   span.glyphicon.glyphicon-calendar
-  |&nbsp;{{capitalize name}}
-  {{#if today}}
-  span.badge.pull-right
-    | Aujourd'hui
-  {{/if}}
+  | &nbsp;{{capitalize name}}
 //-details
 .row
   //-loop on courses types
@@ -34,25 +32,14 @@ h3(id="{{formatMoment this.date fmt='YYYY-MM-DD'}}")
     {{map type 'label' entree='entrées' plat='plats' legume='légumes' dessert='desserts'}}
     {{map type 'icon' plat='cutlery' legume='leaf' default='pushpin'}}
     {{map type 'dataIcon' entree='j' plat='u' legume='m' dessert='K' fromage='7' default='u'}}
-    h4
-      //-span(data-icon="{{dataIcon}}", class="pull-left icon cantine-icon-{{type}}")
-      |&nbsp;{{label}}
+    h4 {{label}}
     ul.list-unstyled
       {{#each courses}}
       {{map type 'icon' plat='cutlery' legume='leaf' default='pushpin'}}
       {{map type 'dataIcon' entree='j' plat='u' legume='m' dessert='K' fromage='7' default='u'}}
       li.course-details
-        //-span(class="pull-left glyphicon glyphicon-arrow-right")
         span(data-icon="{{dataIcon}}", class="pull-left icon cantine-icon-{{type}}")
-        |&nbsp;{{description}}
-      //--li
-        //--//-span(class="pull-left glyphicon glyphicon-arrow-right")
-        //--//-span(class="pull-left glyphicon glyphicon-{{icon}}")
-        //--|&nbsp;{{description}}
-      //--li
-        //--//-span(class="pull-left glyphicon glyphicon-arrow-right")
-        //--//-span(data-icon="{{dataIcon}}", class="pull-left glyphicon cantine-icon-{{type}}")
-        //--|&nbsp;{{description}}
+        {{description}}
       {{/each}}
   .col-xs-3.visible-print
     {{map type 'label' entree='entrées' plat='plats' legume='légumes' dessert='desserts'}}

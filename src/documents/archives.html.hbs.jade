@@ -18,8 +18,11 @@ comments: false
     strong Attention!
     |  Les menus des semaines à venirs sont à titre indicatif
   ul
-    {{#eachCollection 'menusForArchive'}}
+    {S{#each (groupMenuForArchive 'menus')}}
+    {S{debug}}
+    {S{/each}}
+
+    {S{#eachCollection 'menus'}}
     li
-      a(href='{{url}}')
-        | {{menu.getPreparedTitleLong}} {{url}} {{layout}}
-    {{/eachCollection}}
+      a(href='{S{../url}}') {S{longTitle}} {S{../url}} {S{../layout}}
+    {S{/eachCollection}}
