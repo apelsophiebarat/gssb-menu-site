@@ -48,7 +48,7 @@
     "docpad-plugin-moment": "~2.0.2",
     "docpad-plugin-schoolmenu": "git://github.com/apelsophiebarat/docpad-plugin-schoolmenu.git#v2.4.0",
     "docpad-plugin-tumblr": "~2.0.6",
-    "docpad-plugin-eco": "~2.0.3",
+    "docpad-plugin-eco": "~2.0.3"
   },
   "main": "node_modules/docpad/bin/docpad-server",
   "scripts": {
