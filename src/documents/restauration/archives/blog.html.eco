@@ -1,6 +1,7 @@
 ---
 title: 'Archives du blog de la commission restauration'
 layout: default
+comments: true
 ---
 <div class="container">
   <h2>Blog de la commission restauration:</h2>
