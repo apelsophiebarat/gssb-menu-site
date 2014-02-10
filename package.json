@@ -46,7 +46,7 @@
     "moment": "~2.5.0",
     "underscore": "~1.5.2",
     "docpad-plugin-moment": "~2.0.2",
-    "docpad-plugin-schoolmenu": "git://github.com/apelsophiebarat/docpad-plugin-schoolmenu.git#v2.4.0",
+    "docpad-plugin-schoolmenu": "git://github.com/apelsophiebarat/docpad-plugin-schoolmenu.git#v2.4.2",
     "docpad-plugin-tumblr": "~2.0.6",
     "docpad-plugin-eco": "~2.0.3"
   },

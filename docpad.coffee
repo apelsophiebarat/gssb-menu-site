@@ -4,9 +4,7 @@
 extendr = require 'extendr'
 moment = require 'moment'
 
-menuHelpers = require('./lib/handlebars-helpers-menu').helpers
 websiteVersion = require('./package.json').version
-PrepareMenu = require './lib/PrepareMenu'
 
 siteUrl = "http://www.menu.apelsophiebarat.net" if process.env.NODE_ENV is 'production'
 siteUrl or= "http://localhost:9778"
@@ -133,7 +131,6 @@ module.exports =
       ]
     handlebars:
       helpers:
-        prepareMenu: (menu,options) -> PrepareMenu.prepare(menu,options)
         isCurrentPage: (pageId, options) ->
           documentId = options.data?.document?.id
           output = if pageId is documentId then 'active' else 'inactive'
