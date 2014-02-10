@@ -12,19 +12,15 @@
         li(class='{{isCurrentPage id}}')
           a(href='{{url}}') {{navigationTitle}}
         {{/eachCollection}}
-        //-li.dropdown
+        li.dropdown
           a.dropdown-toggle(href='#', data-toggle='dropdown')
-            | Menus
+            | Archives
             b.caret
           ul.dropdown-menu
-            {s{#eachCollection 'menus'}}
-            li(class='{s{isCurrentPage id}}')
-              a(href='{s{url}}') {s{url}}
-            {s{/eachCollection}}
-            li.divider
-            li.dropdown-header Personnel authorisé uniquement
             li
-              a(href='/restauration/editeur-menu.html') Ajouter un menu
+              a(href='/restauration/archives/blog.html') Blog
+            li
+              a(href='/restauration/archives/menu.html') Menus
       form.navbar-form.navbar-right.hidden-xs.hidden-sm(action='{{site.mailchimp.correspondantsRestauration.action}}', method='post', target='_blank', novalidate='')
         .form-group
           input.form-control#mailchimp-email(type='email', value='', name='EMAIL', placeholder='adresse email', required='')

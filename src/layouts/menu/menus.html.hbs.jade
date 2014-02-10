@@ -3,10 +3,8 @@ layout: 'default'
 ---
 .menu.container.restauration
   | {{{content}}}
-  hr
-  small
-    | Pour toute question, nous contacter&nbsp;
-    a(href='mailto:{{{emailAddresses.restauration}}}') {{{emailAddresses.restauration}}}
-
-
-
+  .hidden-print
+    hr
+    small
+      | Pour toute question, nous contacter&nbsp;
+      a(href='mailto:{{{emailAddresses.restauration}}}') {{{emailAddresses.restauration}}}

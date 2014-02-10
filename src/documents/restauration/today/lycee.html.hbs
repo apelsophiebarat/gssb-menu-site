@@ -1,0 +1,13 @@
+---
+layout: 'default'
+title: 'Menu du lycée'
+navigation: true
+navigationOrder: 3
+navigationTitle: 'Lycée'
+comments: false
+styles: ['/css/restauration.css','/css/cantine-font-styles.css']
+scripts: '/js/restauration.js'
+schoolLevel: 'primaire-college-lycee'
+scriptOnReady: "loadMenuForToday('primaire-college-lycee');"
+---
+{{{partial 'today' schoolLevel='lycee'}}}

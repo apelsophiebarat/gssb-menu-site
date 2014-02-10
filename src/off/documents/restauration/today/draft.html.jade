@@ -1,0 +1,13 @@
+<html>
+  <script type="text/javascript">
+  $(document).ready () ->
+    dateStr = new Date().toJSON().split('T')[0]
+    url1 = "../menus/#{dateStr}-menu-primaire-partial.html"
+    url2 = "../menus/#{dateStr}-menu-partial.html"
+    $('#menu-for-today').load url1,null,(responseTxt,statusTxt,xhr) ->
+      if statusTxt == 'error'
+        $('#menu-for-today').load url2,null,(responseTxt,statusTxt,xhr) ->
+          if statusTxt == 'error'
+            $('#menu-for-today').replaceWith $('#menu-for-today-notfound')
+  </script>
+</html>

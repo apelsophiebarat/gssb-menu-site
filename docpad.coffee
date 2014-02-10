@@ -1,16 +1,28 @@
 # DocPad Configuration File
 # http://docpad.org/docs/config
 
+extendr = require 'extendr'
+moment = require 'moment'
+
 menuHelpers = require('./lib/handlebars-helpers-menu').helpers
 websiteVersion = require('./package.json').version
-
 PrepareMenu = require './lib/PrepareMenu'
 
 siteUrl = "http://www.menu.apelsophiebarat.net" if process.env.NODE_ENV is 'production'
 siteUrl or= "http://localhost:9778"
 
+{joinArrayWithParams} = require './node_modules/docpad-plugin-schoolmenu/src/lib/Utils'
+
+formatSchoolLevels = (menu,opts) -> joinArrayWithParams(menu.fileName.schoolLevels,opts)
+formatJsonDate = (date,fmt) -> moment.utc(date).format(fmt)
+formatFromDate = (menu,fmt) -> formatJsonDate(menu.fileName.week.from,fmt)
+formatToDate = (menu,fmt) -> formatJsonDate(menu.fileName.week.to,fmt)
+
 module.exports =
   templateData:
+    # Extend
+    extend: extendr.deepExtend.bind(extendr)
+    # Require
     require: (name) -> require(name)
     site:
       title: "Apel Sophie Barat"
@@ -57,17 +69,52 @@ module.exports =
       query:
         relativeOutDirPath:
           $startsWith: 'restauration/menus'
+      templateData:
+        prepareMenuTitle: (menu) ->
+          return unless menu?
+          joinOpts = sep: ', ',prefix: ' pour le ',suffix: '',lastSep: ' et le '
+          schoolLevels = formatSchoolLevels menu,joinOpts
+          from = formatFromDate menu,'DD/MM/YYYY'
+          to = formatToDate menu,'DD/MM/YYYY'
+          "Menu du #{from} au #{to}#{schoolLevels}"
+        prepareMenuLongTitle: (menu) ->
+          return unless menu?
+          from = formatFromDate menu,'dddd DD MMMM YYYY'
+          to = formatToDate menu,'dddd DD MMMM YYYY'
+          "Menu du #{from} au #{to}"
+        prepareMenuShortTitle: (menu) ->
+          return unless menu?
+          from = formatFromDate menu,'DD MMM'
+          to = formatToDate menu,'DD MMM YYYY'
+          "Menu du #{from} au #{to}"
+        prepareMenuDescription: (menu) ->
+          return unless menu?
+          joinOpts = sep: ', ',prefix: ' pour le ',suffix: '' ,lastSep: ' et le '
+          schoolLevels = formatSchoolLevels menu,joinOpts
+          from = formatFromDate menu,'dddd DD MMMM YYYY'
+          to = formatToDate menu,'dddd DD MMMM YYYY'
+          "Menu du #{from} au #{to}#{schoolLevels}"
+        prepareSchoolLevelsSimple: (menu) ->
+          return unless menu?
+          menu.fileName.schoolLevels.join(',')
+        prepareMenuLongWithTagsTitle: (menu) ->
+          return unless menu?
+          joinOpts = sep: ', le ',prefix: ' pour le ',suffix: '',lastSep: ' et le '
+          schoolLevels = formatSchoolLevels menu,joinOpts
+          from = formatFromDate menu,'dddd DD MMMM YYYY'
+          to = formatToDate menu,'dddd DD MMMM YYYY'
+          "Menu#{schoolLevels} de la semaine du #{from} au #{to}"
       defaultMeta:
         author: 'correspondants.restauration@apelsophiebarat.net'
         layout: 'menu/default'
-        additionalLayouts: ['menu/json','menu/rss']
+        additionalLayouts: ['menu/json','menu/rss','menu/partial']
         comments: true
         styles: [
           '/css/restauration.css',
           '/css/cantine-font-styles.css'
         ]
         scripts: '/js/restauration.js'
-    OFFrepocloner:
+    repocloner:
       repos: [
           name: 'gssb-menus-repo'
           path: 'src/documents/restauration/menus'
@@ -102,7 +149,20 @@ module.exports =
         url: '/rss.xml'
         item:
           description: (document) -> document.contentRendered
+    tumblr:
+      blog: 'commission-restauration.tumblr.com'
+      apiKey: 'rPassZSGclTwe8cla6EeQia3LT43RdNsafwnqfP048kD2U3SlO'
+      extension: '.html.eco'
+      injectDocumentHelper: (document) ->
+        document
+          .setMeta(
+            layout: 'tumblr'
+            tags: (document.get('tags') or []).concat(['post'])
+            data: """<%- @partial('tumblr-content/'+@document.tumblr.type, @document.tumblr) %>"""
+          )
   collections:
+    posts: (database) ->
+      database.findAllLive({tags: $has: 'post'}, [date:-1])
     navigationPages: ->
       @getCollection("html").findAllLive(navigation:true,[navigationOrder:1])
     menus: ->
@@ -125,10 +185,3 @@ module.exports =
           services:
             disqus: false
             googleAnalytics: false
-
-
-
-
-
-
-

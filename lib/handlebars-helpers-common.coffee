@@ -38,7 +38,6 @@ module.exports =
       fmt = hash.fmt or 'dddd'
       content.format(fmt)
     formatDate: (content,options) ->
-      console.log("type of #{content} is #{typeof content} and #{content.constructor}")
       mapping = options?.hash or {}
       parse = mapping.parse
       fmt = mapping.fmt
@@ -46,7 +45,6 @@ module.exports =
         date = moment.utc(content,parse)
       else
         date = moment.utc(content)
-      console.log("date of #{content} is #{date} as #{date.format(fmt)}")
       return date.format(fmt)
 
 

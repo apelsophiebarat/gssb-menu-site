@@ -31,7 +31,6 @@
         {{{content}}}
         {{{partial 'footer'}}}
 <!--<pre>
-une page de type blog basée sur tumblr avec hook pour reload
 un menu par degre
 
 page ave  les trois menus côte à côte
@@ -55,16 +54,6 @@ Administrateur
         <script src="/vendor/date.format/js/date.format.js"></script>
         <script src="/js/main.js"></script>
         {{{getBlock 'scripts' add=document.scripts}}}
-        
-        {{#if document.scriptOnReady}}
-        <script type="text/javascript" defer='defer'>
-            jQuery(function($) {
-                $(document).ready(function() {
-                    {{{document.scriptOnReady}}}
-                });
-            });
-        </script>
-        {{/if}}
         {{{partial 'google-analytics'}}}
     </body>
 </html>

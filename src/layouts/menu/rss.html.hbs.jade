@@ -1,10 +1,8 @@
+h2 {{prepareMenuLongWithTagsTitle menu}}
 {{#with menu}}
-{{#with formatter.toJSON}}
-h2 {{title.longWithTags}}
-{{/with}}
 {{#each days}}
-h3 {{capitalize name}}
-{{#each coursesGroupedByType}}
+h3 {{capitalize (formatDate this.date fmt='dddd')}}
+{{#each coursesByType}}
 {{map type 'label' entree='entrées' plat='plats' legume='légumes' dessert='desserts'}}
 h4 {{label}}
   ul
