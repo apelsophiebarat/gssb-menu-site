@@ -35,3 +35,5 @@ plugins/handlebarshelpers
 ### ignore menu repo
 src/documents/restauration/menus
 src/raw/vendor
+
+.env

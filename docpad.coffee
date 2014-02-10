@@ -151,7 +151,6 @@ module.exports =
           description: (document) -> document.contentRendered
     tumblr:
       blog: 'commission-restauration.tumblr.com'
-      apiKey: 'rPassZSGclTwe8cla6EeQia3LT43RdNsafwnqfP048kD2U3SlO'
       extension: '.html.eco'
       injectDocumentHelper: (document) ->
         document
