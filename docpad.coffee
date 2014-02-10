@@ -1,21 +1,29 @@
 # DocPad Configuration File
 # http://docpad.org/docs/config
 
-# Define the DocPad Configuration
-_ = require 'lodash'
+extendr = require 'extendr'
 moment = require 'moment'
 
+menuHelpers = require('./lib/handlebars-helpers-menu').helpers
 websiteVersion = require('./package.json').version
+PrepareMenu = require './lib/PrepareMenu'
 
-siteUrl =
-  if process.env.NODE_ENV is 'production'
-    "http://www.menu.apelsophiebarat.net"
-  else
-    "http://localhost:9778"
+siteUrl = "http://www.menu.apelsophiebarat.net" if process.env.NODE_ENV is 'production'
+siteUrl or= "http://localhost:9778"
+
+{joinArrayWithParams} = require './node_modules/docpad-plugin-schoolmenu/src/lib/Utils'
+
+formatSchoolLevels = (menu,opts) -> joinArrayWithParams(menu.fileName.schoolLevels,opts)
+formatJsonDate = (date,fmt) -> moment.utc(date).format(fmt)
+formatFromDate = (menu,fmt) -> formatJsonDate(menu.fileName.week.from,fmt)
+formatToDate = (menu,fmt) -> formatJsonDate(menu.fileName.week.to,fmt)
 
 module.exports =
   templateData:
-    now: -> moment()
+    # Extend
+    extend: extendr.deepExtend.bind(extendr)
+    # Require
+    require: (name) -> require(name)
     site:
       title: "Apel Sophie Barat"
       description: "Apel Sophie Barat - Application Menu Restauration"
@@ -35,10 +43,14 @@ module.exports =
        installer le plugin Google Chrome Frame</a>
        pour améliorer votre navigation sur internet.
       """
-    mailchimp:
-      correspondantsRestauration:
-        action: 'http://apelsophiebarat.us3.list-manage.com/subscribe/post?u=09c087e63bef0442598264fcc&id=8951f44253'
-        stopBotCode: 'b_09c087e63bef0442598264fcc_8951f44253'
+      rss:
+        menu:
+          title: 'menus'
+          url: '/rss.xml'
+      mailchimp:
+        correspondantsRestauration:
+          action: 'http://apelsophiebarat.us3.list-manage.com/subscribe/post?u=09c087e63bef0442598264fcc&id=8951f44253'
+          stopBotCode: 'b_09c087e63bef0442598264fcc_8951f44253'
     getPreparedTitle: ->
       # if we have a document title, then we should use that and suffix the site's title onto it
       if @document.title
@@ -49,25 +61,59 @@ module.exports =
   watchOptions:
     preferredMethods: ['watchFile','watch']
   plugins:
+    coffeekup:
+      require: (name) -> require(name)
+      hardcode:
+        require: (name) -> require(name)
     schoolmenu:
-      layouts:
-        rss: 'menu-rss' #unused
-        html: 'menu-html' #unused
-      metas:
-        rss: {} #unused
-        html: {} #unused
-        json:
-          author: 'correspondants.restauration@apelsophiebarat.net'
-          layout: 'menu'
-          comments: true
-          styles: [
-            '/css/restauration.css',
-            '/css/cantine-font-styles.css'
-          ]
-          scripts: '/js/restauration.js'
-      selector:
-        query:
-          relativeOutDirPath: $startsWith: 'restauration/menus'
+      query:
+        relativeOutDirPath:
+          $startsWith: 'restauration/menus'
+      templateData:
+        prepareMenuTitle: (menu) ->
+          return unless menu?
+          joinOpts = sep: ', ',prefix: ' pour le ',suffix: '',lastSep: ' et le '
+          schoolLevels = formatSchoolLevels menu,joinOpts
+          from = formatFromDate menu,'DD/MM/YYYY'
+          to = formatToDate menu,'DD/MM/YYYY'
+          "Menu du #{from} au #{to}#{schoolLevels}"
+        prepareMenuLongTitle: (menu) ->
+          return unless menu?
+          from = formatFromDate menu,'dddd DD MMMM YYYY'
+          to = formatToDate menu,'dddd DD MMMM YYYY'
+          "Menu du #{from} au #{to}"
+        prepareMenuShortTitle: (menu) ->
+          return unless menu?
+          from = formatFromDate menu,'DD MMM'
+          to = formatToDate menu,'DD MMM YYYY'
+          "Menu du #{from} au #{to}"
+        prepareMenuDescription: (menu) ->
+          return unless menu?
+          joinOpts = sep: ', ',prefix: ' pour le ',suffix: '' ,lastSep: ' et le '
+          schoolLevels = formatSchoolLevels menu,joinOpts
+          from = formatFromDate menu,'dddd DD MMMM YYYY'
+          to = formatToDate menu,'dddd DD MMMM YYYY'
+          "Menu du #{from} au #{to}#{schoolLevels}"
+        prepareSchoolLevelsSimple: (menu) ->
+          return unless menu?
+          menu.fileName.schoolLevels.join(',')
+        prepareMenuLongWithTagsTitle: (menu) ->
+          return unless menu?
+          joinOpts = sep: ', le ',prefix: ' pour le ',suffix: '',lastSep: ' et le '
+          schoolLevels = formatSchoolLevels menu,joinOpts
+          from = formatFromDate menu,'dddd DD MMMM YYYY'
+          to = formatToDate menu,'dddd DD MMMM YYYY'
+          "Menu#{schoolLevels} de la semaine du #{from} au #{to}"
+      defaultMeta:
+        author: 'correspondants.restauration@apelsophiebarat.net'
+        layout: 'menu/default'
+        additionalLayouts: ['menu/json','menu/rss','menu/partial']
+        comments: true
+        styles: [
+          '/css/restauration.css',
+          '/css/cantine-font-styles.css'
+        ]
+        scripts: '/js/restauration.js'
     repocloner:
       repos: [
           name: 'gssb-menus-repo'
@@ -78,13 +124,16 @@ module.exports =
     emailobfuscator:
         emailAddresses:
             restauration: "correspondants.restauration@apelsophiebarat.net"
-    #handlebars plugin configuration
     handlebarshelpers:
-      helpersExtension: [
+      useTemplateDataFunctions: false
+      extensions: [
         './lib/handlebars-helpers-common',
-        './lib/handlebars-helpers-docpad'
+        './lib/handlebars-helpers-docpad',
+        './lib/handlebars-helpers-menu'
       ]
+    handlebars:
       helpers:
+        prepareMenu: (menu,options) -> PrepareMenu.prepare(menu,options)
         isCurrentPage: (pageId, options) ->
           documentId = options.data?.document?.id
           output = if pageId is documentId then 'active' else 'inactive'
@@ -95,50 +144,40 @@ module.exports =
       docpadReady: ['bower:install']
       writeAfter: false
     rss:
-      collection: 'menus'
-      url: '/rss.xml'
+      default:
+        collection: 'menusForRss'
+        url: '/rss.xml'
+        item:
+          description: (document) -> document.contentRendered
+    tumblr:
+      blog: 'commission-restauration.tumblr.com'
+      apiKey: 'rPassZSGclTwe8cla6EeQia3LT43RdNsafwnqfP048kD2U3SlO'
+      extension: '.html.eco'
+      injectDocumentHelper: (document) ->
+        document
+          .setMeta(
+            layout: 'tumblr'
+            tags: (document.get('tags') or []).concat(['post'])
+            data: """<%- @partial('tumblr-content/'+@document.tumblr.type, @document.tumblr) %>"""
+          )
   collections:
+    posts: (database) ->
+      database.findAllLive({tags: $has: 'post'}, [date:-1])
     navigationPages: ->
-      @getCollection("html").findAllLive({navigation:true},[{navigationOrder:1}])
+      @getCollection("html").findAllLive(navigation:true,[navigationOrder:1])
     menus: ->
-      @getDatabase().findAllLive({relativeOutDirPath: {$startsWith: 'restauration/menus'}},[basename:-1])
-    menusForToday: ->
-      #collection = @getDatabase().findAllLive({relativeOutDirPath: {$startsWith: 'restauration/menus'}},[basename:-1])
-      #now = moment()
-      #collection.setFilter 'onlyPresentAndFuture',  (model) ->
-      #  return not model.menu.week.isBeforeWeek(now)
-      #return collection
-      @getDatabase().findAllLive({relativeOutDirPath: {$startsWith: 'restauration/menus'}},[basename:-1])
-    menusForArchive: ->
-      if(true)
-        return @getDatabase().findAllLive({relativeOutDirPath: {$startsWith: 'restauration/menus'}},[basename:-1])
-      else
-        ###
-         TODO :
-            dupliquer les entrees pour chaque valeur de tag
-            grouper par tag
-              pour chaque tag
-                grouper par annees
-                  pour chaque annees
-                    grouper par mois
-        ###
-        menus = @getCollection("menus")
-        separateByTagValues = (coll) ->
-          output=[]
-          for elem in coll
-            for tag in elem.meta.tag
-              output.push
-                keys:
-                  tag: tag
-                  year: elem.meta.year
-                  month: elem.meta.month
-                content: elem
-          return output
-        menusWithKeys = separateByTagValues(menus)
-        groupByTags = (coll) -> _(coll).groupBy('keys.tag').each(groupByYear).value()
-        groupByYear = (coll,tag) -> _(coll).groupBy('keys.year').each(groupByMonth).value()
-        groupByMonth = (coll,year) -> _.groupBy(coll,'keys.month')
-        return groupByTags(menusWithKeys)
+      query =
+        relativeOutDirPath:
+          $startsWith: 'restauration/menus'
+        layout: 'menu/default'
+      @getCollection("html").findAllLive(query,[basename:-1])
+    menusForRss: ->
+      query =
+        relativeOutDirPath:
+          $startsWith: 'restauration/menus'
+        layout: 'menu/rss'
+      #@getFiles(query,[basename:-1])
+      @getCollection("html").findAllLive(query,[basename:-1])
   environments:
     development:
       templateData:
@@ -146,10 +185,3 @@ module.exports =
           services:
             disqus: false
             googleAnalytics: false
-
-
-
-
-
-
-

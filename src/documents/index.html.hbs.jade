@@ -1,21 +1,25 @@
 ---
 layout: 'default'
-title: 'Menu de cette semaine'
+title: 'Site de la commission restauration'
 comments: false
 ---
 .jumbotron
   .container
     h1 {{document.title}}
-      .small Site de tests
-    p.
-      Bonjour et bienvenu sur le nouveau site de l'Apel avec le détails des menus de la catine du groupe scolaire Sophie Barat.
-      Merci de nous laisser un commentaire en bas de page si vous avez des remarques.
+      .small Apel Sophie Barat
     p
-      a.btn.btn-primary.btn-lg(href='#today') Menu d'Aujourd'hui »
-
+      | Bonjour et bienvenu sur le nouveau site de l'Apel avec le détails des menus de la cantine du groupe scolaire Sophie Barat.
+      | Vous trouverez également les dernières nouvelles sur notre&nbsp;
+      a.btn.btn-primary.btn-sm(href='/restauration/blog.html') Blog
 .container
-  #today
-    h2 Le menu de cette semaine ne nous à pas été communiqué.
-    p
-      | Vous pouvez consulter les&nbsp;
-      a.btn.btn-default.btn-sm(href='/archives.html') archives»
+  p.
+    Menu de cette semaine :
+  ul
+    li
+      a(href='/restauration/today/primaire.html') en primaire »
+    li
+      a(href='/restauration/today/college.html') au collège »
+    li
+      a(href='/restauration/today/lycee.html') au lycée »
+  p.
+    Merci de nous laisser un commentaire en bas des pages si vous avez des remarques.

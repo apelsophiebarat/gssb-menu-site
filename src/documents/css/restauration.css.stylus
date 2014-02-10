@@ -1,8 +1,5 @@
 .restauration
-  ul.list-unstyled 
-    li 
-      padding-left 1.5em
-      margin-left 1.5em  
+  ul.list-unstyled
     span.glyphicon,
     span.icon
       margin-left -1.5em
@@ -33,6 +30,13 @@
 
   .cantine-icon-dessert
     color #8E006B
+
+@media screen
+  .restauration
+    ul.list-unstyled 
+      li 
+        padding-left 1.5em
+        margin-left 1.5em
 
 @media print
   body
