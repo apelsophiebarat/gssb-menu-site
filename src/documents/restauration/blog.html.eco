@@ -4,7 +4,7 @@ navigationOrder: 1
 navigationTitle: 'Blog'
 title: 'Blog de la commission restauration'
 layout: default
-comment: true
+comments: true
 ---
 <div class="jumbotron">
   <div class="container">
