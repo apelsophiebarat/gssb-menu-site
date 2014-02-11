@@ -1,0 +1,38 @@
+!!! 5
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    title.
+      <%- @document.title %>
+    //-jquery
+    script(src='//code.jquery.com/jquery-2.1.0.min.js')
+    //-bootstrap
+    link(href='//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css', rel='stylesheet')
+    //-link(href='//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css', rel='stylesheet')
+    script(src='//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js')
+    //-bootswatch
+    link(href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/flatly/bootstrap.min.css", rel="stylesheet")
+    link(href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css", rel="stylesheet")
+
+    link(href="narrow.css", rel="stylesheet")
+    | <%- @getBlock('meta').toHTML() %>
+    | <%- @getBlock('styles').toHTML() %>
+  body
+
+    .container-narrow
+      .jumbotron
+        | <%- @content %>
+
+    .container-narrow.disqus
+      #comments.
+        <%- @getDisqus() %>
+    
+    .ga
+      script.
+        <%- @getGoogleAnalytics() %>
+
+  | <%- @getBlock('scripts').toHTML() %>
+
+
+
+

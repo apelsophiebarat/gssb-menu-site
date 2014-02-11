@@ -17,6 +17,14 @@ formatFromDate = (menu,fmt) -> formatJsonDate(menu.fileName.week.from,fmt)
 formatToDate = (menu,fmt) -> formatJsonDate(menu.fileName.week.to,fmt)
 
 module.exports =
+  events:
+    extendTemplateData: (opts) ->
+      #console.log require('util').inspect(@docpad.generateEnded)
+      {docpad} = @
+      {templateData} = opts
+      templateData.docpad = docpad
+      @
+
   templateData:
     # Extend
     extend: extendr.deepExtend.bind(extendr)
@@ -156,6 +164,11 @@ module.exports =
             tags: (document.get('tags') or []).concat(['post'])
             data: """<%- @partial('tumblr-content/'+@document.tumblr.type, @document.tumblr) %>"""
           )
+    sitemap:
+        cachetime: 600000
+        changefreq: 'weekly'
+        priority: 0.5
+        filePath: 'sitemap.xml'
   collections:
     posts: (database) ->
       database.findAllLive({tags: $has: 'post'}, [date:-1])
@@ -173,7 +186,18 @@ module.exports =
           $startsWith: 'restauration/menus'
         layout: 'menu/rss'
       #@getFiles(query,[basename:-1])
-      @getCollection("html").findAllLive(query,[basename:-1])
+      collection = @getCollection("html").findAllLive(query,[basename:-1])
+      collection.on 'add', (model) -> model.setMetaDefaults(sitemap: false)
+      return collection
+    menusForPartial: ->
+      query =
+        relativeOutDirPath:
+          $startsWith: 'restauration/menus'
+        layout: 'menu/partial'
+      #@getFiles(query,[basename:-1])
+      collection = @getCollection("html").findAllLive(query,[basename:-1])
+      collection.on 'add', (model) -> model.setMetaDefaults(sitemap: false)
+      return collection
   environments:
     development:
       templateData:
