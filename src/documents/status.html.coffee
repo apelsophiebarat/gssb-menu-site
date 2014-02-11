@@ -2,6 +2,7 @@
 layout: default
 referencesOthers: true
 standalone: false
+sitemap: false
 ---
 div '.container', ->
   h1 "Status"

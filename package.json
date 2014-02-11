@@ -47,6 +47,7 @@
     "docpad-plugin-rss": "git://github.com/apelsophiebarat/docpad-plugin-rss.git#v2.1.4",
     "docpad-plugin-schoolmenu": "git://github.com/apelsophiebarat/docpad-plugin-schoolmenu.git#v2.4.2",
     "docpad-plugin-services": "~2.5.0",
+    "docpad-plugin-sitemap": "~2.2.0",
     "docpad-plugin-stylus": "~2.5.0",
     "docpad-plugin-tumblr": "~2.0.6"
   },
