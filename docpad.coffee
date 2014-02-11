@@ -17,6 +17,14 @@ formatFromDate = (menu,fmt) -> formatJsonDate(menu.fileName.week.from,fmt)
 formatToDate = (menu,fmt) -> formatJsonDate(menu.fileName.week.to,fmt)
 
 module.exports =
+  events:
+    extendTemplateData: (opts) ->
+      #console.log require('util').inspect(@docpad.generateEnded)
+      {docpad} = @
+      {templateData} = opts
+      templateData.docpad = docpad
+      @
+
   templateData:
     # Extend
     extend: extendr.deepExtend.bind(extendr)
