@@ -26,7 +26,6 @@ node_modules
 /src/files/vendor
 =======
 node_modules/
-out/
 
 ### ignore docpad plugins
 plugins/schoolmenu

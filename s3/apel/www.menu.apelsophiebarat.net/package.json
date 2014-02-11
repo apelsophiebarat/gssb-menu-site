@@ -1,0 +1,23 @@
+{
+  "name": "www.menu.apelsophiebarat.net",
+  "version": "0.0.1",
+  "description": "pages for maintenance mode",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "docpad": "~6.63.3",
+    "docpad-plugin-jade": "~2.6.2",
+    "docpad-plugin-services": "~2.5.0",
+    "docpad-plugin-eco": "~2.0.3",
+    "docpad-plugin-stylus": "~2.5.0"
+  },
+  "devDependencies": {
+    "docpad-plugin-html2jade": "~2.0.3",
+    "docpad-plugin-livereload": "~2.6.0",
+    "docpad-plugin-less": "~2.4.1"
+  }
+}
