@@ -33,6 +33,7 @@
     "underscore": "~1.5.2",
     "docpad": "~6.63.3",
     "docpad-plugin-coffee": "~2.0.2",
+    "docpad-plugin-crontab": "git://github.com/apelsophiebarat/docpad-plugin-crontab.git#v2.1.1",
     "docpad-plugin-eco": "~2.0.3",
     "docpad-plugin-emailobfuscator": "~2.0.0",
     "docpad-plugin-grunt": "~2.1.1",
@@ -49,8 +50,7 @@
     "docpad-plugin-services": "~2.5.0",
     "docpad-plugin-sitemap": "~2.2.0",
     "docpad-plugin-stylus": "~2.5.0",
-    "docpad-plugin-tumblr": "~2.0.6",
-    "request": "~2.33.0"
+    "docpad-plugin-tumblr": "git://github.com/apelsophiebarat/docpad-plugin-tumblr.git#v2.0.7"
   },
   "main": "node_modules/docpad/bin/docpad-server",
   "scripts": {

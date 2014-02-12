@@ -4,44 +4,58 @@
 extendr = require 'extendr'
 moment = require 'moment'
 
-websiteVersion = require('./package.json').version
-
-siteUrl = "http://www.menu.apelsophiebarat.net" if process.env.NODE_ENV is 'production'
-siteUrl or= "http://localhost:9778"
-
 {joinArrayWithParams} = require './node_modules/docpad-plugin-schoolmenu/src/lib/Utils'
+
+websiteVersion = require('./package.json').version
+productionMode = process.env.NODE_ENV is 'production'
+
+siteUrl = "http://www.menu.apelsophiebarat.net" if productionMode
+siteUrl or= "http://localhost:9778"
 
 formatSchoolLevels = (menu,opts) -> joinArrayWithParams(menu.fileName.schoolLevels,opts)
 formatJsonDate = (date,fmt) -> moment.utc(date).format(fmt)
 formatFromDate = (menu,fmt) -> formatJsonDate(menu.fileName.week.from,fmt)
 formatToDate = (menu,fmt) -> formatJsonDate(menu.fileName.week.to,fmt)
 
+triggerGenerate= (docpad,triggerName) ->
+  docpad.log 'warn', "refresh requested by #{triggerName} #{new Date.toJSON().toString()}..."
+  docpad.action('generate', {populate:true, reload:true})
+
 module.exports =
   events:
     serverExtend: (opts) ->
       {server} = opts
       docpad = @docpad
-      request = require 'request'
+
       success = 200
       badRequest = 400
       redirectPermanent = 301
       redirectTemporary = 302
 
+      #trigger regeneration for github web-hook
+      server.get '/refresh', (req, res, next) ->
+        triggerGenerate docpad,'requested'
+        return res.send success
+
       #non-www to www redirect
       server.get '/*', (req, res, next) ->
-        if req.headers.host.indexOf('www') != 0
+        if req.headers.host.indexOf('www') != 0 and productionMode
           res.redirect("http://www.#{req.headers.host}#{req.url}", redirectPermanent)
         else
           next()
+
       #chain
       @
 
     extendTemplateData: (opts) ->
-      #console.log require('util').inspect(@docpad.generateEnded)
+      #used by status page
       {docpad} = @
       {templateData} = opts
       templateData.docpad = docpad
+
+      #chain
       @
+
   templateData:
     # Extend
     extend: extendr.deepExtend.bind(extendr)
@@ -182,10 +196,16 @@ module.exports =
             data: """<%- @partial('tumblr-content/'+@document.tumblr.type, @document.tumblr) %>"""
           )
     sitemap:
-        cachetime: 600000
-        changefreq: 'weekly'
-        priority: 0.5
-        filePath: 'sitemap.xml'
+      cachetime: 600000
+      changefreq: 'weekly'
+      priority: 0.5
+      filePath: 'sitemap.xml'
+    crontab:
+      reloadForTumblr:
+        cronTime: '0 0 5,15,18,22 * * *'
+        onTick: ()->
+          {docpad,job} = @
+          triggerGenerate docpad,'scheduler'
   collections:
     posts: (database) ->
       database.findAllLive({tags: $has: 'post'}, [date:-1])
