@@ -49,7 +49,8 @@
     "docpad-plugin-services": "~2.5.0",
     "docpad-plugin-sitemap": "~2.2.0",
     "docpad-plugin-stylus": "~2.5.0",
-    "docpad-plugin-tumblr": "~2.0.6"
+    "docpad-plugin-tumblr": "~2.0.6",
+    "request": "~2.33.0"
   },
   "main": "node_modules/docpad/bin/docpad-server",
   "scripts": {

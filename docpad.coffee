@@ -18,13 +18,30 @@ formatToDate = (menu,fmt) -> formatJsonDate(menu.fileName.week.to,fmt)
 
 module.exports =
   events:
+    serverExtend: (opts) ->
+      {server} = opts
+      docpad = @docpad
+      request = require 'request'
+      success = 200
+      badRequest = 400
+      redirectPermanent = 301
+      redirectTemporary = 302
+
+      #non-www to www redirect
+      server.get '/*', (req, res, next) ->
+        if req.headers.host.indexOf('www') != 0
+          res.redirect("http://www.#{req.headers.host}#{req.url}", redirectPermanent)
+        else
+          next()
+      #chain
+      @
+
     extendTemplateData: (opts) ->
       #console.log require('util').inspect(@docpad.generateEnded)
       {docpad} = @
       {templateData} = opts
       templateData.docpad = docpad
       @
-
   templateData:
     # Extend
     extend: extendr.deepExtend.bind(extendr)
