@@ -1,0 +1,27 @@
+---
+layout: 'default'
+title: 'Questionnaire pour mieux vous connaitre'
+navigation: true
+navigationOrder: -1
+navigationTitle: 'Questionnaire'
+comments: false
+scriptOnReady: "calcHeight();"
+---
+script(language='JavaScript', type='text/javascript').
+  // <![CDATA[
+  function calcHeight()
+  {
+    //find the height of the internal page
+    var the_height=document.getElementById('resize').contentWindow.document.body.scrollHeight;
+    //change the height of the iframe
+    document.getElementById('resize').height=the_height;
+  }
+  // ]]>
+.jumbotron
+  .container
+    h1 {{document.title}}
+      .small Apel Sophie Barat
+    p
+      | Merci de prendre quelques instants pour remplir ce questionnaire
+.container
+  iframe#resize(name='resize',width='100%',height='1000',frameborder='0', marginheight='0', marginwidth='0', scrolling='no', src='https://docs.google.com/forms/d/1oi4wE-2OJtYKAhHq6jfOFnvpyo_hpEypf35OLi_KK1Q/viewform?embedded=true') Chargement...

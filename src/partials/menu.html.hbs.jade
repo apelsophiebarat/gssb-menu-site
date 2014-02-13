@@ -17,7 +17,7 @@
   {{#with menu}}
   {{#each days}}
   //-title
-  h3(id="{{formatDate this.date fmt='YYYY-MM-DD'}}")
+  h3(id="{{formatDate this.date fmt='YYYY-MM-DD'}}",name="{{formatDate this.date fmt='YYYY-MM-DD'}}")
     span.glyphicon.glyphicon-calendar
     | &nbsp;{{capitalize (formatDate this.date fmt='dddd')}}
   //-details
