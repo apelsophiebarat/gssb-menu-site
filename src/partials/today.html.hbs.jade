@@ -1,13 +1,13 @@
 .container
   .hidden
-    #menu-for-today-notfound
+    #menu-for-today-notfound(name='menu-for-today-notfound')
       .jumbotron
         h1 {{document.title}}
         h2 Le menu de cette semaine ne nous à pas été communiqué.
         p
           | Vous pouvez consulter les&nbsp;
           a.btn.btn-primary.btn-lg(href = '/restauration/archives/menu.html#{{schoolLevel}}') archives»
-  #menu-for-today
+  #menu-for-today(name='menu-for-today')
     h2 Veuillez patienter...
     p
       | Vous pouvez consulter les&nbsp;

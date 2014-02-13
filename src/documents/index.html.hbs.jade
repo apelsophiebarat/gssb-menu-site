@@ -6,14 +6,18 @@ comments: true
 .jumbotron
   .container
     h1 {{document.title}}
-      .small Apel Sophie Barat
+      .small Apel Groupe Scolaire Sophie Barat
+    p Bonjour et bienvenue sur le nouveau site de l'Apel avec le détail des menus de la cantine.
+    p Vous trouverez également les dernières nouvelles sur notre blog.
     p
-      | Bonjour et bienvenue sur le nouveau site de l'Apel avec le détails des menus de la cantine du groupe scolaire Sophie Barat.
-      | Vous trouverez également les dernières nouvelles sur notre&nbsp;
-      a.btn.btn-primary.btn-sm(href='/restauration/blog.html') Blog
+      a.btn.btn-primary.btn-lg(role='button',href='/restauration/blog.html') Accéder au blog »
 .container
-  p.
-    Menu de cette semaine :
+  .alert.alert-info
+    p
+      | Cette semaine, pensez à remplir notre&nbsp;
+      a.alert-link(href='/restauration/questionnaire.html') questionnaire »
+    p Le but étant de mieux répondre aux besoins de chacun.
+  h2 Menu de cette semaine
   ul
     li
       a(href='/restauration/today/primaire.html') en primaire »
