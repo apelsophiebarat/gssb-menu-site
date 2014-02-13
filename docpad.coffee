@@ -18,7 +18,7 @@ formatFromDate = (menu,fmt) -> formatJsonDate(menu.fileName.week.from,fmt)
 formatToDate = (menu,fmt) -> formatJsonDate(menu.fileName.week.to,fmt)
 
 triggerGenerate= (docpad,triggerName) ->
-  docpad.log 'warn', "refresh requested by #{triggerName} #{new Date.toJSON().toString()}..."
+  docpad.log 'warn', "refresh requested by #{triggerName} #{new Date().toJSON().toString()}..."
   docpad.action('generate', {populate:true, reload:true})
 
 module.exports =
