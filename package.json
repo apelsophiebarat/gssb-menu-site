@@ -62,6 +62,7 @@
     "docpad-plugin-html2jade": "~2.0.3",
     "docpad-plugin-livereload": "~2.5.6",
     "requirejs": "~2.1.9",
-    "grunt-favicons": "~0.6.0"
+    "grunt-favicons": "~0.6.0",
+    "docpad-plugin-less": "~2.4.1"
   }
 }

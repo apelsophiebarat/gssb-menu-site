@@ -5,18 +5,20 @@ sitemap: false
 html(lang='en')
   head
     meta(charset='utf-8')
-    title Page Not Found :(
+    title Page Introuvable :(
     link(rel='stylesheet', href='/css/404.css')
+    link(rel="shortcut icon",href="/images/favicons/favicon.ico")
+    link(rel="icon",type="image/png",sizes="64x64",href="/images/favicons/favicon.png")
   body
     .container
       h1
-        | Not found
+        | Erreur de liens
         span :(
-      p Sorry, but the page you were trying to view does not exist.
-      p It looks like this was the result of either:
+      p Désolé, mais la page que vous tentez de voir n'existe pas.
+      p Les raisons probables sont:
       ul
-        li a mistyped address
-        li an out-of-date link
-      script.
-        var GOOG_FIXURL_LANG = (navigator.language || '').slice(0,2),GOOG_FIXURL_SITE = location.host;
-      script(src='//linkhelp.clients.google.com/tbproxy/lh/wm/fixurl.js')
+        li Une erreur dans la saisie de l'URL
+        li Un vieux lien inexistant
+        li Un lien cassé suite à une manipulation d'Olivier :)
+
+
