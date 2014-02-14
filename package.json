@@ -1,6 +1,6 @@
 {
   "name": "gssb-menu",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "private": true,
   "description": "Apel Sophie Barat - Application Menu Restauration",
   "engines": {
@@ -61,6 +61,8 @@
     "docpad-plugin-downloader": "~2.1.4",
     "docpad-plugin-html2jade": "~2.0.3",
     "docpad-plugin-livereload": "~2.5.6",
-    "requirejs": "~2.1.9"
+    "requirejs": "~2.1.9",
+    "grunt-favicons": "~0.6.0",
+    "docpad-plugin-less": "~2.4.1"
   }
 }

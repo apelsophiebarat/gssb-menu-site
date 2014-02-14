@@ -21,6 +21,10 @@
         <script src="/vendor/console-polyfill/js/index.js"></script>
         <script src="/vendor/modernizr/js/modernizr.js"></script>
         <script src="/vendor/respond/js/respond.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="/vendor/jquery/js/jquery.min.js"><\/script>')</script>
+
+        {{{partial 'favicon'}}}
 
         <link rel="alternate" type="application/rss+xml" title="{{site.rss.menu.title}}" href="{{site.rss.menu.url}}"/>
     </head>
@@ -50,13 +54,11 @@ Administrateur
 </pre>-->
         {{{partial 'disqus'}}}
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="/vendor/jquery/js/jquery.min.js"><\/script>')</script>
         <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
         <script src="/vendor/date.format/js/date.format.js"></script>
         <script src="/js/main.js"></script>
         {{{getBlock 'scripts' add=document.scripts}}}
-        
+
         {{#if document.scriptOnReady}}
         <script type="text/javascript" defer='defer'>
             jQuery(function($) {

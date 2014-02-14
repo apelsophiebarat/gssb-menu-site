@@ -1,4 +1,4 @@
-.navbar.navbar-inverse.navbar-fixed-top.hidden-print
+.navbar.navbar-inverse.navbar-fixed-top.hidden-print(role="navigation")
   .container
     .navbar-header
       button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
@@ -21,10 +21,4 @@
               a(href='/restauration/archives/blog.html') Blog
             li
               a(href='/restauration/archives/menu.html') Menus
-      form.navbar-form.navbar-right.hidden-xs.hidden-sm(action='{{site.mailchimp.correspondantsRestauration.action}}', method='post', target='_blank', novalidate='')
-        .form-group
-          input.form-control#mailchimp-email(type='email', value='', name='EMAIL', placeholder='adresse email', required='')
-          //- real people should not fill this in and expect good things - do not remove this or risk form bot signups
-          span(style='position: absolute; left: -5000px;')
-            input.form-control(type='text', name='{{site.mailchimp.correspondantsRestauration.stopBotCode}}', value='')
-        button.btn.btn-success(type='submit' name='subscribe') S'abonner
+      a.navbar-btn.navbar-right.btn.btn-success(role='button',href='/restauration/inscription.html') S'abonner

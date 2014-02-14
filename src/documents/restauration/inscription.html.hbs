@@ -1,0 +1,765 @@
+---
+layout: default
+navigation: false
+navigationOrder: 6
+navigationTitle: "S'abonner"
+title: 'Inscription pour recevoir les nouveautés par mail'
+sitemap: false
+---
+<div class="container">
+  <h2>{{document.title}}</h2>
+</div>
+<div class="container inscription">
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+          try {
+              $(':input:visible:first').focus();
+              $('#archive-list li:even').addClass("odd");
+              $('.field-group, .field-group input, .field-group select').bind('click', function(event) {
+                  if (event.type == 'click') {
+                      if ($(this).hasClass('field-group')) {
+                          var fg = $(this);
+                          if ($(this).children('.datefield').length == 1) {
+                              // Do not select 1st input so date picker will work.
+                          } else {
+                              $(this).find('input, select').slice(0, 1).focus();
+                          }
+                      } else {
+                          var fg = $(this).parents('.field-group');
+                          $(this).focus();
+                      }
+                      fg.not('.focused-field').addClass('focused-field').children('.field-help').slideDown('fast');
+                      $('.focused-field').not(fg).removeClass('focused-field').children('.field-help').slideUp('fast');
+                  }
+                  event.stopPropagation();
+              });
+              $('label').bind('click', function(event) {
+                  if (event.type == 'click') {
+                      var fg = $(this).next();
+
+                      if (fg.children('.datefield').length == 1) {
+                          // Do not select 1st input so date picker will work.
+                      } else {
+                          fg.find('input, select').slice(0, 1).focus();
+                      }
+                      fg.not('.focused-field').addClass('focused-field').children('.field-help').slideDown('fast');
+                      $('.focused-field').not(fg).removeClass('focused-field').children('.field-help').slideUp('fast');
+                  }
+                  event.stopPropagation();
+              });
+              // Allow select inputs to be width:auto up to 500px (because max-width doesn't work in IE7)
+              $("select").each(function() {
+                  $(this).css("width", "auto");
+                  if ($(this).width() > 500) {
+                      $(this).css("width", "500px");
+                  }
+              });
+
+          } catch (e) {
+              console.log(e);
+          }
+      });
+    </script>
+
+    <script type="text/javascript" src="http://downloads.mailchimp.com/js/jquery.mailcheck.min.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+          try {
+              var domains = ['hp.com', 'hotmail.co.uk', 'yahoo.co.uk', 'yahoo.com.tw', 'yahoo.com.au', 'yahoo.com.mx', 'gmail.com', 'hotmail.com', 'yahoo.com', 'aol.com', 'comcast.net', 'msn.com', 'seznam.cz', 'sbcglobal.net', 'live.com', 'bellsouth.net', 'hotmail.fr', 'verizon.net', 'mail.ru', 'btinternet.com', 'cox.net', 'yahoo.com.br', 'bigpond.com', 'att.net', 'yahoo.fr', 'mac.com', 'ymail.com', 'googlemail.com', 'earthlink.net', 'xtra.co.nz', 'me.com', 'yahoo.gr', 'walla.com', 'yahoo.es', 'charter.net', 'shaw.ca', 'live.nl', 'yahoo.ca', 'orange.fr', 'optonline.net', 'gmx.de', 'wanadoo.fr', 'optusnet.com.au', 'rogers.com', 'web.de', 'ntlworld.com', 'juno.com', 'yahoo.com.sg', 'rocketmail.com', 'yandex.ru', 'yahoo.co.in', 'centrum.cz', 'live.co.uk', 'sympatico.ca', 'libero.it', 'walla.co.il', 'bigpond.net.au', 'yahoo.com.hk', 'ig.com.br', 'live.com.au', 'free.fr', 'sky.com', 'uol.com.br', 'abv.bg', 'live.fr', 'terra.com.br', 'hotmail.it', 'tiscali.co.uk', 'rediffmail.com', 'aim.com', 'blueyonder.co.uk', 'telus.net', 'bol.com.br', 'hotmail.es', 'email.cz', 'windowslive.com', 'talktalk.net', 'home.nl', 't-online.de', 'yahoo.de', 'telenet.be', '163.com', 'embarqmail.com', 'windstream.net', 'roadrunner.com', 'bluewin.ch', 'skynet.be', 'laposte.net', 'yahoo.it', 'qq.com', 'live.dk', 'planet.nl', 'hetnet.nl', 'gmx.net', 'mindspring.com', 'rambler.ru', 'iinet.net.au', 'eircom.net', 'yahoo.com.ar', 'wp.pl', 'mail.com', 'emmis.com', 'hotmail.de', 'lireo.com', 'gmx.at', 'ukr.net', 'zol.co.zw'];
+              var tdomains = [];
+              $('#MERGE0').on('blur', function() {
+                  $(this).mailcheck({
+                      domains: domains,
+                      topLevelDomains: tdomains,
+                      suggested: function(element, suggestion) {
+                          var msg = 'Hmm, did you mean ' + suggestion.full + '?';
+                          if ($('#MERGE0_mailcheck').length > 0) {
+                              $('#MERGE0_mailcheck').html(msg);
+                          } else {
+                              element.after('<div id="MERGE0_mailcheck" class="errorText">' + msg + '</div>');
+                          }
+                      },
+                      empty: function(element) {
+                          if ($('#MERGE0_mailcheck').length > 0) {
+                              $('#MERGE0_mailcheck').remove();
+                          }
+                          return;
+                      }
+                  });
+              });
+          } catch (e) {
+              console.log(e);
+          }
+      });
+    </script>
+
+    <style type="text/css">
+      .inscription body {
+        font: 14px/20px 'Helvetica', Arial, sans-serif;
+        margin: 0;
+        padding: 75px 0 0 0;
+        text-align: center;
+      }
+      .inscription p {
+        padding: 0 0 10px 0;
+      }
+      .inscription textarea {
+        font: 12px/18px 'Helvetica', Arial, sans-serif;
+      }
+      .inscription h2 {
+        font-size: 22px;
+        line-height: 28px;
+        margin: 0 0 10px 0;
+      }
+      .inscription h3 {
+        margin: 0 0 5px 0;
+        padding: 0;
+      }
+      .inscription .headerBar {
+        background: none;
+        padding: 0;
+        border: none;
+      }
+      .inscription .wrapper {
+        width: 600px;
+        margin: 0 auto 10px auto;
+        text-align: left;
+      }
+      .inscription .tpl-image-content {
+        padding-left: 20px;
+      }
+      .inscription fieldset {
+        padding: 10px;
+        background-color: #ddd;
+        border: 1px solid #ccc;
+      }
+      .inscription label {
+        float: none;
+        clear: both;
+        display: block;
+        width: auto;
+        margin-top: 8px;
+        text-align: left;
+        font-weight: bold;
+        position: relative;
+      }
+      .inscription .field-group {
+        float: none;
+        margin: 3px 0 15px 0;
+        padding: 5px;
+        border-style: solid;
+        background: -moz-linear-gradient(top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.25));
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(255, 255, 255, 0)), color-stop(1, rgba(255, 255, 255, 0.25)));
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#3fffffff');
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#3fffffff')";
+      }
+      .inscription .field-group input {
+        display: block;
+        margin: 0;
+        padding: 5px;
+        border: 0;
+        background: none;
+        width: 98%;
+        background-position: 97% 50% !important;
+      }
+      .inscription .radiogroup input,
+      .inscription .phonearea input,
+      .inscription .addressfield input,
+      .inscription .datefield input,
+      .inscription .groups input {
+        width: auto;
+      }
+      .inscription .radio-group input,
+      .inscription .checkbox-group input {
+        width: auto;
+        display: inline-block;
+        margin-right: 5px;
+      }
+      .inscription .field-group label {
+        clear: none;
+      }
+      .inscription .field-group textarea {
+        background: none;
+        border: none;
+        width: 525px;
+        height: 150px;
+        margin: 0;
+        overflow: auto;
+      }
+      .inscription .field-help {
+        display: none;
+        font-weight: normal;
+        position: static;
+        float: none;
+        clear: both;
+        margin: 5px -5px -5px -5px;
+        width: auto;
+        padding: 8px 10px;
+        line-height: 16px;
+        font-size: 12px;
+        -moz-border-radius: 0;
+        border-radius: 0;
+        -webkit-border-radius: 0;
+      }
+      .inscription .field-help .help {
+        min-height: 16px;
+        text-decoration: none;
+      }
+      .inscription .field-group .feedback br {
+        display: none;
+      }
+      .inscription .field-group .feedback div {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .inscription .addressfield .subfield {
+        clear: left;
+      }
+      .inscription .indicates-required {
+        text-align: right;
+      }
+      .inscription .indicates-required span {
+        font-size: 150%;
+        font-weight: bold;
+      }
+      .inscription label .asterisk {
+        position: absolute;
+        top: 36px;
+        right: 10px;
+        font-size: 30px;
+      }
+      .inscription .error,
+      .inscription .errorText {
+        margin: 5px 0 0 0;
+        padding: 5px 10px;
+      }
+      .inscription .formstatus {
+        margin-bottom: 10px;
+      }
+      .inscription .alert {
+        background: #e4f3d4;
+        border: 2px solid #5ca000;
+        font-size: 14px;
+        color: #5ca000;
+        margin: 10px 0;
+        padding: 10px;
+      }
+      .inscription .alert a {
+        color: #5ca000;
+        text-decoration: underline;
+      }
+      .inscription .datefield,
+      .inscription .phonefield-us {
+        padding: 5px;
+      }
+      .inscription .datefield input,
+      .inscription .phonefield-us input {
+        display: inline;
+        width: 60px;
+        margin: 0 2px;
+        letter-spacing: 1px;
+        text-align: center;
+        padding: 5px 0 2px 0;
+      }
+      .inscription .datefield .small-meta {
+        font-size: 11px;
+      }
+      .inscription .phonefield-us .phonearea input,
+      .inscription .phonefield-us .phonedetail1 input {
+        width: 40px;
+      }
+      .inscription .datefield .monthfield input,
+      .inscription .datefield .dayfield input {
+        width: 30px;
+      }
+      .inscription .datefield label,
+      .inscription .phonefield-us label {
+        display: none;
+      }
+      .inscription ul.interestgroup_field {
+        display: block;
+        padding: 5px;
+        margin: 0;
+      }
+      .inscription ul.interestgroup_field li,
+      .inscription .interestgroup_row {
+        display: block;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .inscription ul.interestgroup_field input {
+        display: inline !important;
+        width: auto !important;
+      }
+      .inscription ul.interestgroup_field label,
+      .inscription div.interestgroup_field label {
+        display: table;
+        padding: 0 0 0 3px;
+        font-weight: normal;
+      }
+      .inscription select {
+        width: 300px;
+        margin: 5px;
+      }
+      .inscription ul.unsub-options {
+        display: block;
+      }
+      .inscription ul.unsub-options li {
+        display: block;
+        padding-bottom: 5px;
+      }
+      .inscription ul.unsub-options li label {
+        display: inline;
+        padding-left: 5px;
+      }
+      .inscription ul.unsub-options li textarea {
+        display: block;
+        padding: 5px;
+        background: #fff;
+        border: 1px solid #ccc;
+        margin: 5px 0;
+        width: 350px;
+        height: 100px;
+      }
+      .inscription .addressfield span {
+        display: block;
+        height: 34px;
+      }
+      .inscription .addressfield input {
+        float: right;
+        width: 56%;
+        margin: 0 9% 0 0;
+        padding: 8px 0 2px 0;
+      }
+      .inscription .addressfield label {
+        float: left;
+        font-weight: normal;
+        text-align: right;
+        width: 33%;
+      }
+      .inscription .addressfield .countryfield {
+        display: block;
+        height: 45px;
+        position: relative;
+      }
+      .inscription .addressfield .countryfield select {
+        margin: 0;
+        position: absolute;
+        top: 10px;
+        left: 35%;
+      }
+      .inscription .captcha {
+        float: left;
+        width: 340px;
+        height: 170px;
+      }
+      .inscription #archive-list {
+        display: block;
+        margin: 15px 0;
+        padding: 0;
+        border-top: 1px solid #eee;
+      }
+      .inscription #archive-list li {
+        display: block;
+        list-style: none;
+        margin: 0;
+        padding: 6px 10px;
+        border-bottom: 1px solid #eee;
+      }
+      .inscription .button,
+      .inscription .button-small {
+        display: inline-block;
+        font-family: 'Helvetica', Arial, sans-serif;
+        width: auto;
+        white-space: nowrap;
+        height: 32px;
+        margin: 5px 5px 0 0;
+        padding: 0 22px;
+        text-decoration: none;
+        text-align: center;
+        font-weight: bold;
+        font-style: normal;
+        font-size: 15px;
+        line-height: 32px;
+        cursor: pointer;
+        border: 0;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        -webkit-border-radius: 4px;
+        vertical-align: top;
+      }
+      .inscription .button-small {
+        float: none;
+        display: inline-block;
+        height: auto;
+        line-height: 18px !important;
+        padding: 2px 15px !important;
+        font-size: 11px !important;
+      }
+      .inscription .button span {
+        display: inline;
+        font-family: 'Helvetica', Arial, sans-serif;
+        text-decoration: none;
+        font-weight: bold;
+        font-style: normal;
+        font-size: 15px;
+        line-height: 32px;
+        cursor: pointer;
+        border: none;
+      }
+      .inscription .rounded6 {
+        -moz-border-radius: 6px;
+        border-radius: 6px;
+        -webkit-border-radius: 6px;
+      }
+      .inscription .poweredWrapper {
+        padding: 20px 0;
+        width: 560px;
+        margin: 0 auto;
+      }
+      .inscription .poweredBy {
+        display: block;
+      }
+      .inscription span.or {
+        display: inline-block;
+        height: 32px;
+        line-height: 32px;
+        padding: 0 5px;
+        margin: 5px 5px 0 0;
+      }
+      .inscription .clear {
+        clear: both;
+      }
+      .inscription .tpl-image-content {
+        padding-left: 0px;
+      }
+      .inscription .profile-list {
+        display: block;
+        margin: 15px 20px;
+        padding: 0;
+        list-style: none;
+        border-top: 1px solid #eee;
+      }
+      .inscription .profile-list li {
+        display: block;
+        margin: 0;
+        padding: 5px 0;
+        border-bottom: 1px solid #eee;
+      }
+      .inscription body {
+        -webkit-text-size-adjust: none;
+      }
+      .inscription input {
+        -webkit-appearance: none;
+      }
+      .inscription input[type=checkbox] {
+        -webkit-appearance: checkbox;
+      }
+      .inscription input[type=radio] {
+        -webkit-appearance: radio;
+      }
+      .inscription body,
+      .inscription #bodyTable {
+        background-color: #eeeeee;
+      }
+      .inscription h1 {
+        font-size: 28px;
+        margin-bottom: 15px;
+        padding: 0;
+        margin-top: 0;
+      }
+      .inscription #templateContainer {
+        background-color: none;
+      }
+      .inscription #templateBody {
+        background-color: #ffffff;
+      }
+      .inscription .bodyContent {
+        line-height: 150%;
+        font-family: Lucida Sans, Lucida;
+        font-size: 12px;
+        color: #333333;
+        padding: 20px;
+      }
+      .inscription a:link,
+      .inscription a:active,
+      .inscription a:visited,
+      .inscription a {
+        color: #336699;
+      }
+      .inscription .button:link,
+      .inscription .button:active,
+      .inscription .button:visited,
+      .inscription .button,
+      .inscription .button span,
+      .inscription .button-small:link,
+      .inscription .button-small:active,
+      .inscription .button-small:visited,
+      .inscription .button-small {
+        background-color: #336699;
+        color: #ffffff;
+      }
+      .inscription .button:hover,
+      .inscription .button-small:hover {
+        background-color: #1e5781;
+        color: #ffffff;
+      }
+      .inscription label {
+        line-height: 150%;
+        font-family: Helvetica;
+        font-size: 14px;
+        color: #333333;
+      }
+      .inscription .field-group {
+        background-color: #eeeeee;
+        border-width: 2px;
+        border-color: #d0d0d0;
+      }
+      .inscription .datefield input,
+      .inscription .phonefield-us input,
+      .inscription .addressfield input {
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-color: #999999;
+      }
+      .inscription .field-group input,
+      .inscription .field-group textarea {
+        font-family: Helvetica;
+        font-size: 16px;
+        color: #333333;
+      }
+      .inscription .asterisk {
+        color: #cc6600;
+      }
+      .inscription .field-help {
+        background-color: #dcdcdc;
+        color: #000;
+      }
+      .inscription .error,
+      .inscription .errorText {
+        font-size: 12px;
+        color: #6b0505;
+        background-color: #f4bfbf;
+      }
+      .inscription html[dir=rtl] .wrapper,
+      .inscription html[dir=rtl] .container,
+      .inscription html[dir=rtl] label {
+        text-align: right !important;
+      }
+      .inscription html[dir=rtl] ul.interestgroup_field label {
+        padding: 0;
+      }
+      .inscription html[dir=rtl] ul.interestgroup_field input {
+        margin-left: 5px;
+      }
+      .inscription html[dir=rtl] label .asterisk {
+        right: auto;
+        left: 10px;
+      }
+      @media (max-width: 601px) {
+        .inscription body {
+          width: 100%;
+          -webkit-font-smoothing: antialiased;
+          padding: 10px 0 0 0 !important;
+          min-width: 300px !important;
+        }
+      }
+      @media (max-width: 601px) {
+        .inscription textarea,
+        .inscription select,
+        .inscription ul.unsub-options li textarea {
+          width: 80% !important;
+        }
+      }
+      @media (max-width: 601px) {
+        .inscription h1 img {
+          max-width: 100%;
+          height: auto !important;
+        }
+      }
+      @media (max-width: 601px) {
+        .inscription .wrapper,
+        .inscription .poweredWrapper {
+          width: auto !important;
+          max-width: 600px !important;
+          padding: 0 10px;
+        }
+      }
+      @media (max-width: 601px) {
+        .inscription .addressfield .countryfield select {
+          max-width: 50% !important;
+        }
+      }
+      @media (max-width: 601px) {
+        .inscription #templateContainer,
+        .inscription #templateBody,
+        .inscription #templateContainer table {
+          width: 100% !important;
+          -moz-box-sizing: border-box;
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+        }
+      }
+    </style>
+
+    <div class="wrapper rounded6" id="templateContainer">
+
+        <div id="templateBody" class="bodyContent rounded6">
+
+
+
+
+
+
+
+            <div id="subscribeFormWelcome">
+                <div style="text-align: center; ">
+                    <span style="font-size:18px">
+                        <span style="font-family:lucida sans unicode,lucida grande,sans-serif">Vous recevrez un email &agrave; chaque mise &agrave; jour (menus, messages sur le blog...)</span>
+                    </span>
+                </div>
+            </div>
+            <div class="indicates-required">
+                <span class="asterisk">*</span>champ requis</div>
+
+
+
+            <form action="http://apelsophiebarat.us3.list-manage1.com/subscribe/post" method="POST">
+                <input type="hidden" name="u" value="09c087e63bef0442598264fcc">
+                <input type="hidden" name="id" value="8951f44253">
+
+
+                <div id="mergeTable" class="mergeTable">
+
+
+                    <div class="mergeRow dojoDndItem mergeRow-email" id="mergeRow-0">
+                        <label for="MERGE0">Adresse Email
+                            <span class="req float-right fwl dim6 asterisk">*</span>
+                        </label>
+                        </label>
+                        <div class="field-group">
+                            <input type="email" autocapitalize="off" autocorrect="off" name="MERGE0" id="MERGE0" size="25" value="">
+
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="mergeRow dojoDndItem mergeRow-text" id="mergeRow-1">
+                        <label for="MERGE1">Prénom</label>
+                        <div class="field-group">
+                            <input type="text" name="MERGE1" id="MERGE1" size="25" value="">
+
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="mergeRow dojoDndItem mergeRow-text" id="mergeRow-2">
+                        <label for="MERGE2">Nom</label>
+                        <div class="field-group">
+                            <input type="text" name="MERGE2" id="MERGE2" size="25" value="">
+
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="mergeRow dojoDndItem mergeRow-text" id="mergeRow-6">
+                        <label for="MERGE6">Code Postale</label>
+                        <div class="field-group">
+                            <input type="text" name="MERGE6" id="MERGE6" size="25" value="">
+
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="mergeRow dojoDndItem mergeRow-radio" id="mergeRow-3">
+                        <label for="MERGE3">Adhérent Apel</label>
+                        <div class="field-group">
+                            <div class="interestgroup_field radio-group" id="MERGE3">
+                                <label class="radio" for="MERGE3-0">
+                                    <input type="radio" data-dojo-type="dijit/form/RadioButton" name="MERGE3" id="MERGE3-0" value="Oui" class="av-radio">Oui</label>
+                                <label class="radio" for="MERGE3-1">
+                                    <input type="radio" data-dojo-type="dijit/form/RadioButton" name="MERGE3" id="MERGE3-1" value="Non" class="av-radio">Non</label>
+                            </div>
+
+
+
+
+                        </div>
+
+                    </div>
+
+
+
+
+
+                    <div id="interestTable">
+
+
+                        <div id="mergeRow-100-6553" class="mergeRow dojoDndItem mergeRow-interests-checkboxes">
+                            <label>Niveaux scolaires qui vous intéressent</label>
+                            <div class="field-group groups">
+                                <ul class="interestgroup_field checkbox-group" id="interestgroup_field_257249">
+                                    <li class="below12">
+                                        <label class="checkbox" for="group_1">
+                                            <input type="checkbox" data-dojo-type="dijit/form/CheckBox" id="group_1" name="group[6553][1]" value="1" class="av-checkbox">Primaire</label>
+                                    </li>
+                                    <li class="below12">
+                                        <label class="checkbox" for="group_2">
+                                            <input type="checkbox" data-dojo-type="dijit/form/CheckBox" id="group_2" name="group[6553][2]" value="1" class="av-checkbox">Collège</label>
+                                    </li>
+                                    <li class="below12">
+                                        <label class="checkbox" for="group_4">
+                                            <input type="checkbox" data-dojo-type="dijit/form/CheckBox" id="group_4" name="group[6553][4]" value="1" class="av-checkbox">Lycée</label>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <br>
+                <!-- real people should not fill this in and expect good things -->
+                <div style="position: absolute; left: -5000px;">
+                    <input type="text" name="b_09c087e63bef0442598264fcc_8951f44253" value="">
+                </div>
+
+                <div class="submit_container">
+                    <input type="submit" class="button" name="submit" value="Inscrivez-vous à la liste">
+                </div>
+            </form>
+
+
+
+        </div>
+    </div>
+
+
+    <div class="poweredWrapper">
+        <span class="poweredBy">
+            <a href="http://www.mailchimp.com/monkey-rewards/?utm_source=freemium_newsletter&utm_medium=email&utm_campaign=monkey_rewards&aid=09c087e63bef0442598264fcc&afl=1">
+                <img src="http://cdn-images.mailchimp.com/monkey_rewards/MC_MonkeyReward_15.png" border="0" alt="Email Marketing Powered by MailChimp" title="MailChimp Email Marketing" width="139" height="54">
+            </a>
+        </span>
+    </div>
+
+</div>
