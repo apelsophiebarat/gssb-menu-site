@@ -1,6 +1,6 @@
 {
   "name": "gssb-menu",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "private": true,
   "description": "Apel Sophie Barat - Application Menu Restauration",
   "engines": {
@@ -31,7 +31,7 @@
     "lodash": "~2.4.1",
     "moment": "~2.5.0",
     "underscore": "~1.5.2",
-    "docpad": "~6.63.3",
+    "docpad": "git://github.com/apelsophiebarat/docpad.git#v6.63.4",
     "docpad-plugin-coffee": "~2.0.2",
     "docpad-plugin-crontab": "git://github.com/apelsophiebarat/docpad-plugin-crontab.git#v2.1.1",
     "docpad-plugin-eco": "~2.0.3",
