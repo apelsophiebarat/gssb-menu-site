@@ -30,10 +30,18 @@ module.exports = (grunt)->
         docpad: ['.docpad.db','out']
         bower: ['bower_components','./src/raw/vendor']
         node: ['node_modules']
+      favicons:
+        options:
+            html: 'src/partials/favicon.html',
+            HTMLPrefix: "/images/favicons/"
+        icons:
+          src: 'src/raw/images/site-icon.png'
+          dest: 'src/raw/images/favicons/'
 
     grunt.loadNpmTasks 'grunt-bower-task'
     grunt.loadNpmTasks 'grunt-contrib-clean'
+    grunt.loadNpmTasks 'grunt-favicons'
     #grunt.loadNpmTasks 'grunt-bower-requirejs'
 
     grunt.registerTask('default','')
-    
+
