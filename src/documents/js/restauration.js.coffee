@@ -8,7 +8,7 @@ window.scrollToToday = scrollToToday = () ->
 
 getMondayDateStr = (today) ->
   dayofweek = today.getDay()
-  nbrOfDaysToRemoveUntilMonday = ((1-dayofweek)-7)%7
+  nbrOfDaysToRemoveUntilMonday = Math.abs(((1-dayofweek)-7)%7)
   monday = new Date(today.getTime())
   monday.setDate(monday.getDate()-nbrOfDaysToRemoveUntilMonday)
   return monday.toJSON().split('T')[0]
