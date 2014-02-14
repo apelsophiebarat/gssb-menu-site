@@ -3,7 +3,7 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    Eric Vantillard -- Developper -- @evantill
 
 # THANKS
 
@@ -13,3 +13,5 @@
 
     HTML5, CSS3
     jQuery, Modernizr
+    Docpad, Grunt, Coffee-script
+    Bootstrap
