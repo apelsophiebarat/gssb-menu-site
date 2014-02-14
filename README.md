@@ -127,6 +127,14 @@
 
 ## Heroku
 
+add git remote `git@heroku.com:gssb-menu-site.git`
+
+```
+[remote "heroku"]
+  url = git@heroku.com:gssb-menu-site.git
+  fetch = +refs/heads/*:refs/remotes/heroku/*
+```
+
 ### custom error &maintenance pages
 
 ```
