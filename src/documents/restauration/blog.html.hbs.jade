@@ -1,0 +1,22 @@
+---
+navigation: true
+navigationOrder: 1
+navigationTitle: 'Blog'
+title: 'Blog de la commission restauration'
+layout: default
+comments: true
+---
+.jumbotron
+  .container
+    h1 {{document.title}}
+    p Vous retrouverez toutes les dernières informations concernant la cantine du groupe scolaire Sophie Barat sur cette page.
+    p Merci de nous laisser un commentaire en bas de page si vous avez des remarques.
+
+.container
+  {{#each (getCollection 'posts')}}
+  .panel.panel-default
+    .panel-heading
+      h3.panel-title {{title}}
+    .panel-body {{{contentRenderedWithoutLayouts}}}
+  {{/each}}
+

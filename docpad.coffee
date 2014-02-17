@@ -51,16 +51,20 @@ module.exports =
       #used by status page
       {docpad} = @
       {templateData} = opts
-      templateData.docpad = docpad
+      #define status page data
+      templateData.status =
+        version: -> @site.version
+        date: -> @site.date
+        environment: -> docpad.getEnvironment()
+        hostname: -> docpad.getHostname()
+        renderingDate: -> new Date()
+        lastPostDate: -> docpad.getCollection('posts')?.first()?.toJSON()?.date
+        lastMenuDate: -> docpad.getCollection('menus')?.first()?.toJSON()?.date
 
       #chain
       @
 
   templateData:
-    # Extend
-    extend: extendr.deepExtend.bind(extendr)
-    # Require
-    require: (name) -> require(name)
     site:
       title: "Apel Sophie Barat"
       description: "Apel Sophie Barat - Application Menu Restauration"
@@ -98,10 +102,6 @@ module.exports =
   watchOptions:
     preferredMethods: ['watchFile','watch']
   plugins:
-    coffeekup:
-      require: (name) -> require(name)
-      hardcode:
-        require: (name) -> require(name)
     schoolmenu:
       query:
         relativeOutDirPath:

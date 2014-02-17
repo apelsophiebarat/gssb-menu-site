@@ -1,0 +1,12 @@
+---
+title: 'Archives du blog de la commission restauration'
+layout: default
+comments: true
+---
+.container
+  h2 Blog de la commission restauration:
+  ul
+    {{#each (getCollection 'posts')}}
+    li
+      a(href="{{url}}") {{title}}
+    {{/each}}

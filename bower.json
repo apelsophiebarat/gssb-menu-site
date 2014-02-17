@@ -24,7 +24,7 @@
     "jquery": "~2.0.3",
     "bootstrap": "~3.0.3",
     "modernizr": "~2.7.1",
-    "momentjs": "~2.4.0",
+    "moment": "~2.4.0",
     "respond": "~1.4.1",
     "console-polyfill": "~0.1.0",
     "bootstrap-datepicker": "https://github.com/eternicode/bootstrap-datepicker.git#master",
