@@ -1,0 +1,355 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "cantine-font";
+  src:url("/fonts/cantine-font.eot");
+  src:url("/fonts/cantine-font.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/cantine-font.woff") format("woff"),
+    url("/fonts/cantine-font.ttf") format("truetype"),
+    url("/fonts/cantine-font.svg#cantine-font") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+//use modernizr fontface detection
+.fontface
+
+  [data-icon]:before {
+    font-family: "cantine-font" !important;
+    content: attr(data-icon);
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    speak: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  [class^="icon-"]:before,
+  [class*=" icon-"]:before {
+    font-family: "cantine-font" !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    speak: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .icon-fontawesome-non:before {
+    content: "a";
+  }
+  .icon-fontawesome-oui:before {
+    content: "b";
+  }
+  .icon-fontawesome-feuille:before {
+    content: "c";
+  }
+  .icon-fontawesome-plusun:before {
+    content: "d";
+  }
+  .icon-fontawesome-webfont-moinsun:before {
+    content: "e";
+  }
+  .icon-fontawesome-webfont-zero:before {
+    content: "f";
+  }
+  .icon-fontawesome-entree:before {
+    content: "g";
+  }
+  .icon-carotte-2:before {
+    content: "l";
+  }
+  .icon-carotte-1:before {
+    content: "m";
+  }
+  .icon-mais-1:before {
+    content: "n";
+  }
+  .icon-mais-2:before {
+    content: "o";
+  }
+  .icon-aubergine:before {
+    content: "p";
+  }
+  .icon-tomate:before {
+    content: "q";
+  }
+  .icon-sucre:before {
+    content: "r";
+  }
+  .icon-fraise:before {
+    content: "s";
+  }
+  .icon-riz:before {
+    content: "t";
+  }
+  .icon-couverts:before {
+    content: "u";
+  }
+  .icon-couverts-assiette:before {
+    content: "v";
+  }
+  .icon-menu-1:before {
+    content: "w";
+  }
+  .icon-couverts-2:before {
+    content: "x";
+  }
+  .icon-fromage-blanc:before {
+    content: "y";
+  }
+  .icon-fromage-noir:before {
+    content: "z";
+  }
+  .icon-bol-blanc:before {
+    content: "A";
+  }
+  .icon-gateau:before {
+    content: "B";
+  }
+  .icon-grosse-poire:before {
+    content: "C";
+  }
+  .icon-muffin:before {
+    content: "D";
+  }
+  .icon-viande-petite:before {
+    content: "E";
+  }
+  .icon-viande-blanc:before {
+    content: "F";
+  }
+  .icon-viande-noir:before {
+    content: "G";
+  }
+  .icon-diuble-feuille:before {
+    content: "H";
+  }
+  .icon-bol-chaud-2:before {
+    content: "I";
+  }
+  .icon-bol-fruits:before {
+    content: "J";
+  }
+  .icon-potiron:before {
+    content: "K";
+  }
+  .icon-poisson:before {
+    content: "L";
+  }
+  .icon-pasteque:before {
+    content: "M";
+  }
+  .icon-flaticon-22:before {
+    content: "N";
+  }
+  .icon-flaticon-23:before {
+    content: "O";
+  }
+  .icon-flaticon-24:before {
+    content: "P";
+  }
+  .icon-flaticon-25:before {
+    content: "Q";
+  }
+  .icon-flaticon-26:before {
+    content: "R";
+  }
+  .icon-flaticon-27:before {
+    content: "S";
+  }
+  .icon-flaticon-28:before {
+    content: "T";
+  }
+  .icon-flaticon-29:before {
+    content: "U";
+  }
+  .icon-fried:before {
+    content: "V";
+  }
+  .icon-gourd:before {
+    content: "W";
+  }
+  .icon-grapes3:before {
+    content: "X";
+  }
+  .icon-hot12:before {
+    content: "Y";
+  }
+  .icon-leaves4:before {
+    content: "Z";
+  }
+  .icon-meat2:before {
+    content: "0";
+  }
+  .icon-meat3:before {
+    content: "1";
+  }
+  .icon-meat4:before {
+    content: "2";
+  }
+  .icon-muffin2:before {
+    content: "3";
+  }
+  .icon-pear:before {
+    content: "4";
+  }
+  .icon-piece3:before {
+    content: "5";
+  }
+  .icon-porridge:before {
+    content: "6";
+  }
+  .icon-portion:before {
+    content: "7";
+  }
+  .icon-portion1:before {
+    content: "8";
+  }
+  .icon-restaurant:before {
+    content: "9";
+  }
+  .icon-restaurant2:before {
+    content: "!";
+  }
+  .icon-restaurant7:before {
+    content: '\"';
+  }
+  .icon-restaurant11:before {
+    content: "#";
+  }
+  .icon-rice:before {
+    content: "$";
+  }
+  .icon-strawberry1:before {
+    content: "%";
+  }
+  .icon-striped3:before {
+    content: "&";
+  }
+  .icon-tomato3:before {
+    content: "'";
+  }
+  .icon-flaticon-30:before {
+    content: "(";
+  }
+  .icon-flaticon-31:before {
+    content: ")";
+  }
+  .icon-flaticon-32:before {
+    content: "*";
+  }
+  .icon-pear2:before {
+    content: "+";
+  }
+  .icon-watermelon1:before {
+    content: ",";
+  }
+  .icon-flaticon-44:before {
+    content: "\e001";
+  }
+  .icon-menu-pomme:before {
+    content: "h";
+  }
+  .icon-bol-noir:before {
+    content: "i";
+  }
+  .icon-bol-chaud:before {
+    content: "j";
+  }
+  .icon-equilibre:before {
+    content: "k";
+  }
+  .icon-carrot:before {
+    content: "l";
+  }
+  .icon-carrot3:before {
+    content: "m";
+  }
+  .icon-corn:before {
+    content: "n";
+  }
+  .icon-corn1:before {
+    content: "o";
+  }
+  .icon-eggplant:before {
+    content: "p";
+  }
+  .icon-flaticon:before {
+    content: "q";
+  }
+  .icon-flaticon-1:before {
+    content: "r";
+  }
+  .icon-flaticon-2:before {
+    content: "s";
+  }
+  .icon-flaticon-3:before {
+    content: "t";
+  }
+  .icon-flaticon-4:before {
+    content: "u";
+  }
+  .icon-flaticon-5:before {
+    content: "v";
+  }
+  .icon-flaticon-6:before {
+    content: "w";
+  }
+  .icon-flaticon-7:before {
+    content: "x";
+  }
+  .icon-flaticon-8:before {
+    content: "y";
+  }
+  .icon-flaticon-9:before {
+    content: "z";
+  }
+  .icon-flaticon-10:before {
+    content: "A";
+  }
+  .icon-flaticon-11:before {
+    content: "B";
+  }
+  .icon-flaticon-12:before {
+    content: "C";
+  }
+  .icon-poire:before {
+    content: "D";
+  }
+  .icon-flaticon-14:before {
+    content: "E";
+  }
+  .icon-flaticon-15:before {
+    content: "F";
+  }
+  .icon-flaticon-16:before {
+    content: "G";
+  }
+  .icon-flaticon-17:before {
+    content: "H";
+  }
+  .icon-flaticon-18:before {
+    content: "I";
+  }
+  .icon-flaticon-19:before {
+    content: "J";
+  }
+  .icon-flaticon-20:before {
+    content: "K";
+  }
+  .icon-flaticon-21:before {
+    content: "L";
+  }
+  .icon-flaticon-22:before {
+    content: "M";
+  }
+  .icon-flaticon-23:before {
+    content: "N";
+  }
