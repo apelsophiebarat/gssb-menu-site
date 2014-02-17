@@ -12,22 +12,26 @@
         <meta name="viewport" content="width=device-width">
         {{{getBlock 'meta'}}}
 
+        <link rel="alternate" type="application/rss+xml" title="{{site.rss.menu.title}}" href="{{site.rss.menu.url}}"/>
+
+        {{{partial 'favicon'}}}
+
         <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="/vendor/full-glyphicons/css/glyphicons.css">
         <link rel="stylesheet" href="/css/main.css">
         {{{getBlock 'styles' add=document.styles}}}
 
+        {{!simulate console in IE}}
         <script src="/vendor/console-polyfill/js/index.js"></script>
+        {{!detect supported html5 features like fontface}}
         <script src="/vendor/modernizr/js/modernizr.js"></script>
+        {{!polyfill for min/max-width CSS3 Media Queries (for IE 6-8, and more)}}
         <script src="/vendor/respond/js/respond.min.js"></script>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="/vendor/jquery/js/jquery.min.js"><\/script>')</script>
 
-        {{{partial 'favicon'}}}
-
-        <link rel="alternate" type="application/rss+xml" title="{{site.rss.menu.title}}" href="{{site.rss.menu.url}}"/>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -53,13 +57,12 @@ Lycée
 Administrateur
   liste de l'ensemble des menus sur une seule page
 </pre>-->
-        {{{partial 'disqus'}}}
 
+        {{! defered loading of some javascripts}}
         <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
         <script src="/vendor/moment/js/moment.min.js"></script>
         <script src="/js/main.js"></script>
         {{{getBlock 'scripts' add=document.scripts}}}
-
         {{#if document.scriptOnReady}}
         <script type="text/javascript" defer='defer'>
             jQuery(function($) {
@@ -69,6 +72,8 @@ Administrateur
             });
         </script>
         {{/if}}
+
+        {{{partial 'disqus'}}}
         {{{partial 'google-analytics'}}}
     </body>
 </html>
