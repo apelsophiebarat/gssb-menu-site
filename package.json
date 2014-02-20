@@ -50,7 +50,10 @@
     "docpad-plugin-services": "~2.5.0",
     "docpad-plugin-sitemap": "~2.2.0",
     "docpad-plugin-stylus": "~2.5.0",
-    "docpad-plugin-tumblr": "git://github.com/apelsophiebarat/docpad-plugin-tumblr.git#v2.0.7"
+    "docpad-plugin-tumblr": "git://github.com/apelsophiebarat/docpad-plugin-tumblr.git#v2.0.7",
+    "grunt-contrib-cssmin": "~0.8.0",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-uglify": "~0.3.2"
   },
   "main": "node_modules/docpad/bin/docpad-server",
   "scripts": {

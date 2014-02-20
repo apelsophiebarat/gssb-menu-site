@@ -37,11 +37,33 @@ module.exports = (grunt)->
         icons:
           src: 'src/raw/images/site-icon.png'
           dest: 'src/raw/images/favicons/'
+      concat:
+        css:
+          src: ['out/css/*','!all.css']
+          dest: 'out/css/all.css'
+        js:
+          src: ['out/js/*','!all.js']
+          dest: 'out/js/all.js'
+      cssmin:
+        css:
+          src: 'out/css/all.css'
+          dest: 'out/css/all.min.css'
+      uglify:
+        js:
+          files:
+            'out/js/all.js': ['out/js/all.js']
 
     grunt.loadNpmTasks 'grunt-bower-task'
     grunt.loadNpmTasks 'grunt-contrib-clean'
     grunt.loadNpmTasks 'grunt-favicons'
+    grunt.loadNpmTasks 'grunt-contrib-concat'
+    grunt.loadNpmTasks 'grunt-contrib-cssmin'
+    grunt.loadNpmTasks 'grunt-contrib-uglify'
     #grunt.loadNpmTasks 'grunt-bower-requirejs'
 
     grunt.registerTask('default','')
+    grunt.registerTask('assets', ['concat:css', 'cssmin:css', 'concat:js', 'uglify:js']);
+
+
+
 

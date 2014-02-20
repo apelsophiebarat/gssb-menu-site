@@ -178,7 +178,7 @@ module.exports =
         goUp: '<a href="#">Scroll up</a>'
     grunt:
       docpadReady: ['bower:install']
-      writeAfter: false
+      writeAfter: ['assets']
     rss:
       default:
         collection: 'menusForRss'
