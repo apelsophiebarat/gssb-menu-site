@@ -31,18 +31,13 @@
   .cantine-icon-dessert
     color #8E006B
 
-@media screen
-  .restauration
+  @media screen  
     ul.list-unstyled 
       li 
         padding-left 1.5em
         margin-left 1.5em
 
-@media print
-  body
-    padding 0
-    margin 0
-  .restauration
+  @media print
     h2
       font-size 16px
     h3
@@ -52,4 +47,7 @@
     *
       font-size 12px
 
-  
+@media print
+  body
+    padding 0
+    margin 0

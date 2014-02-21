@@ -4,6 +4,3 @@ body
 
 .navbar .container
   width: 100%
-
-.tumblr-post-container
-  margin-top 2em

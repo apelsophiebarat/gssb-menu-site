@@ -7,3 +7,7 @@ jQuery ($) ->
       $('html, body').animate({
         scrollTop: $(this).offset().top - navOffset
       }, scrollDuration)
+
+jQuery ($) ->
+  $.fn.urlExists = (url) ->
+    $.ajax(type: 'HEAD',url: url)
