@@ -147,10 +147,10 @@ module.exports =
         additionalLayouts: ['menu/json','menu/rss','menu/partial']
         comments: true
         styles: [
-          '/css/restauration.css',
+          '/css/menu.css',
           '/css/cantine-font-styles.css'
         ]
-        scripts: '/js/restauration.js'
+        scripts: '/js/menu.js'
     repocloner:
       repos: [
           name: 'gssb-menus-repo'
@@ -178,7 +178,7 @@ module.exports =
         goUp: '<a href="#">Scroll up</a>'
     grunt:
       docpadReady: ['bower:install']
-      writeAfter: ['assets']
+      writeAfter: false #['assets']
     rss:
       default:
         collection: 'menusForRss'
@@ -236,6 +236,11 @@ module.exports =
       collection.on 'add', (model) -> model.setMetaDefaults(sitemap: false)
       return collection
   environments:
+    offline:
+      enabledPlugins:
+        tumblr: false        
+        repocloner: false
+        downloader: false
     development:
       templateData:
         site:

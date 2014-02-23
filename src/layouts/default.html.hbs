@@ -18,8 +18,7 @@
 
         <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="/vendor/full-glyphicons/css/glyphicons.css">
-        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/default.css">
         {{{getBlock 'styles' add=document.styles}}}
 
         {{!simulate console in IE}}
@@ -61,7 +60,7 @@ Administrateur
         {{! defered loading of some javascripts}}
         <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
         <script src="/vendor/moment/js/moment.min.js"></script>
-        <script src="/js/main.js"></script>
+
         {{{getBlock 'scripts' add=document.scripts}}}
         {{#if document.scriptOnReady}}
         <script type="text/javascript" defer='defer'>

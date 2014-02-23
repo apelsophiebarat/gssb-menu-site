@@ -4,7 +4,7 @@ layout: default
 comments: true
 ---
 .container
-  h2 Blog de la commission restauration:
+  h2 {{document.title}}
   ul
     {{#each (getCollection 'posts')}}
     li

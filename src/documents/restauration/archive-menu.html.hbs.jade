@@ -5,3 +5,8 @@ comments: true
 ---
 .container
   h2 {{document.title}}
+  ul
+    {{#each (getCollection 'menus')}}
+    li
+      a(href="{{url}}") {{title}}
+    {{/each}}

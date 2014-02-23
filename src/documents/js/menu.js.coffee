@@ -16,8 +16,8 @@ loadMenuForTodayFromUrls = (urls) ->
 loadMenuForDate = (schoolLevel,menuDate) ->
   dateStr = menuDate.toISOString().split('T')[0]
   urls = [
-    "../menus/#{dateStr}-menu-#{schoolLevel}-partial.html",
-    "../menus/#{dateStr}-menu-partial.html"
+    "menus/#{dateStr}-menu-#{schoolLevel}-partial.html",
+    "menus/#{dateStr}-menu-partial.html"
   ]
   loadMenuForTodayFromUrls(urls.reverse())
 
