@@ -66,6 +66,13 @@ module.exports =
 
   templateData:
     site:
+      urls:
+        blog: 'restauration/blog.html'
+        questionnaire: 'restauration/questionnaire.html'
+        inscription: 'restauration/inscription.html'
+        primaire: 'restauration/primaire.html'
+        college: 'restauration/college.html'
+        lycee: 'restauration/lycee.html'
       title: "Apel Sophie Barat"
       description: "Apel Sophie Barat - Application Menu Restauration"
       url: siteUrl

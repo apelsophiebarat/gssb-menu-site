@@ -13,31 +13,32 @@ restaurationPath: restauration
     p Bonjour et bienvenue sur le nouveau site de l'Apel avec le détail des menus de la cantine.
     p Vous trouverez également les dernières nouvelles sur notre blog.
     p
-      a.btn.btn-default.btn-lg(role='button',href='{{restaurationPath}}/blog.html') Accéder au blog »
+      a.btn.btn-default.btn-lg(role='button',href='{{site.urls.blog}}') Accéder au blog »
+      
 .container
   {{#if document.questionnaire}}
   .alert.alert-info
     p
       | Cette semaine, pensez à remplir notre&nbsp;
-      a.alert-link(href='{{restaurationPath}}/questionnaire.html') questionnaire »
+      a.alert-link(href='{{site.urls.questionnaire}}') questionnaire »
     p Le but étant de mieux répondre aux besoins de chacun.
   {{/if}}
   {{#if document.inscription}}
   .alert.alert-info
     p
       | Pensez à vous&nbsp;
-      a.alert-link(href='{{restaurationPath}}/inscription.html') abonner
+      a.alert-link(href='{{site.urls.inscription}}') abonner
       | &nbsp;à notre&nbsp;
-      a.alert-link(href='{{restaurationPath}}/inscription.html') lettre d'information
+      a.alert-link(href='{{site.urls.inscription}}') lettre d'information
     p Vous recevrez automatiquement un email lors de la publication des menus.
   {{/if}}
   h2 Menu de cette semaine
   ul
     li
-      a(href='{{restaurationPath}}/primaire.html') en primaire »
+      a(href='{{site.urls.primaire}}') en primaire »
     li
-      a(href='{{restaurationPath}}/college.html') au collège »
+      a(href='{{site.urls.college}}') au collège »
     li
-      a(href='{{restaurationPath}}/lycee.html') au lycée »
+      a(href='{{site.urls.lycee}}') au lycée »
   p.
     Merci de nous laisser un commentaire en bas des pages si vous avez des remarques.
