@@ -1,3 +1,11 @@
+redirectTo = (url) ->
+  # similar behavior as an HTTP redirect
+  window.location.replace 'http://stackoverflow.com'
+
+navigateTo = (url) ->
+  # similar behavior as clicking on a link
+  window.location.href = 'http://stackoverflow.com'
+
 #use jquery, date.format
 window.scrollToToday = scrollToToday = () ->
   know = moment().format('YYYY-MM-DD')
