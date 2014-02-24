@@ -1,14 +1,6 @@
-h2 {{prepareMenuLongWithTagsTitle menu}}
-{{#with menu}}
-{{#each days}}
-h3 {{capitalize (formatDate this.date fmt='dddd')}}
-{{#each coursesByType}}
-{{map type 'label' entree='entrées' plat='plats' legume='légumes' dessert='desserts'}}
-h4 {{label}}
-  ul
-    {{#each courses}}
-    li {{description}}
-    {{/each}}
-{{/each}}
-{{/each}}
-{{/with}}
+.news
+ | Vous pouvez consulter&nbsp;
+ a(href='{{document.url}}') consulter
+ | &nbsp;la dernière mise à jour du&nbsp;
+ a(href='{{document.url}}') {{prepareMenuLongWithTagsTitle menu}}	
+ 
