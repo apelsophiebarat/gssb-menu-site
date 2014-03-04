@@ -62,11 +62,18 @@
     "postinstall": "grunt bower:install"
   },
   "devDependencies": {
+    "coffee-script": "~1.7.1",
+    "minimist": "0.0.8",
+    "requirejs": "~2.1.9",
     "docpad-plugin-downloader": "~2.1.4",
     "docpad-plugin-html2jade": "~2.0.3",
+    "docpad-plugin-less": "~2.4.1",
     "docpad-plugin-livereload": "~2.5.6",
-    "requirejs": "~2.1.9",
     "grunt-favicons": "~0.6.0",
-    "docpad-plugin-less": "~2.4.1"
+    "gulp": "~3.5.2",
+    "gulp-clean": "~0.2.4",
+    "gulp-modernizr": "git://github.com/doctyper/gulp-modernizr.git",
+    "gulp-util": "~2.2.14",
+    "gulp-uglify": "~0.2.1"
   }
 }
