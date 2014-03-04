@@ -2,5 +2,9 @@ body
   padding-top 50px
   padding-bottom 20px
 
+  @media print
+    padding 0
+    margin 0
+
 .navbar .container
   width: 100%
