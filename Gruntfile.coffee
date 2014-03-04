@@ -1,10 +1,14 @@
 
 path = require 'path'
-      
+
 module.exports = (grunt)->
     'use strict'
 
     grunt.initConfig
+      clean:
+        docpad: ['.docpad.db','out']
+        bower: ['bower_components','./src/raw/vendor']
+        node: ['node_modules']
       bower:
         #target:
             #rjsConfig: 'app/config.js'
@@ -19,10 +23,6 @@ module.exports = (grunt)->
             cleanTargetDir: true
             cleanBowerDir: false
             bowerOptions: {}
-      clean:
-        docpad: ['.docpad.db','out']
-        bower: ['bower_components','./src/raw/vendor']
-        node: ['node_modules']
       favicons:
         options:
             html: 'src/partials/favicon.html',

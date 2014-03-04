@@ -117,6 +117,40 @@ module.exports =
         relativeOutDirPath:
           $startsWith: 'menus'
       templateData:
+        menuPager: (menu,options) ->
+          return unless menu?
+          currentDate = menu.fileName.week.from
+          current =
+            date: moment.utc(currentDate)
+            url: '#'
+          memo = {}
+          isBefore = (d1,d2) -> d1.date.isBefore(d2.date)
+          isAfter = (d1,d2) -> d1.date.isAfter(d2.date)
+          older = (d1,d2) -> if isAfter(d1,d2) then d1 else d2
+          younger = (d1,d2) -> if isBefore(d1,d2) then d1 else d2
+          fn = (memo,document) ->
+            data =
+              date: moment.utc(document.getMeta('date'))
+              url: document.get('url')
+            {previous,next} = memo
+            if isBefore(data,current)
+              if previous?
+                previous = older(previous,data)
+              else
+                previous = data
+            else if isAfter(data,current)
+              if next?
+                next = younger(next,data)
+              else
+                next = data
+            return {previous,next}
+          memo = @getCollection("menus").reduce(fn,memo)
+          data =
+            previousEnabled: if memo.previous? then 'enabled' else 'disabled'
+            previousUrl:  if memo.previous? then memo.previous.url else '#'
+            nextEnabled: if memo.next? then 'enabled' else 'disabled'
+            nextUrl: if memo.next? then memo.next.url else '#'
+          options.fn(this,data:data)
         prepareMenuTitle: (menu) ->
           return unless menu?
           joinOpts = sep: ', ',prefix: ' pour le ',suffix: '',lastSep: ' et le '
@@ -202,6 +236,7 @@ module.exports =
         document
           .setMeta(
             layout: 'tumblr'
+            styles: ['/css/blog.css']
             tags: (document.get('tags') or []).concat(['post'])
             data: """<%- @partial('tumblr-content/'+@document.tumblr.type, @document.tumblr) %>"""
           )

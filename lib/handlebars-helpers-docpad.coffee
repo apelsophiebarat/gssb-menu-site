@@ -18,7 +18,7 @@ module.exports =
 
     getCollection: (collectionName, options) ->
       collection = @getCollection(collectionName)
-      throw "eachCollection hbs directive error : collection #{collectionName} not found" unless collection?
+      throw "getCollection hbs directive error : collection #{collectionName} not found" unless collection?
       collection = collection.toJSON()
 
     eachCollection: (collectionName, options) ->

@@ -1,6 +1,6 @@
 .menu.container.restauration
   //-titre
-  h2.text-center
+  h2.text-center    
     span.hidden-print
       span.hidden-xs.hidden-sm
         | {{prepareMenuLongTitle menu}}&nbsp;
@@ -10,6 +10,19 @@
         .small {{prepareSchoolLevelsSimple menu}}
     span.visible-print
       | {{prepareMenuLongWithTagsTitle menu}}
+  //-navigation on menus
+  {{#menuPager menu}}
+  .hidden-xs
+    ul.pager
+      li(class="{{@previousEnabled}}").previous
+        a(href="{{@previousUrl}}") &larr; semaines précédentes
+      li(class="{{@nextEnabled}}").next
+        a(href="{{@nextUrl}}") semaines suivantes &rarr;
+  .visible-xs
+    .btn-group.btn-group-justified
+       a(href="{{@previousUrl}}", role="button").btn.btn-default &larr; précédentes
+       a(href="{{@nextUrl}}", role="button").btn.btn-default suivantes &rarr;
+  {{/menuPager}}
   //-loop on days
   {{#with menu}}
   {{#each days}}
