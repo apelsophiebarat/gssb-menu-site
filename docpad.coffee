@@ -67,12 +67,15 @@ module.exports =
   templateData:
     site:
       urls:
-        blog: 'restauration/blog.html'
-        questionnaire: 'restauration/questionnaire.html'
-        inscription: 'restauration/inscription.html'
-        primaire: 'restauration/primaire.html'
-        college: 'restauration/college.html'
-        lycee: 'restauration/lycee.html'
+        blog: '/blog.html'
+        questionnaire: '/questionnaire.html'
+        inscription: '/inscription.html'
+        primaire: '/primaire.html'
+        college: '/college.html'
+        lycee: '/lycee.html'
+        archives:
+          menus: '/archives/menus.html'
+          blog: '/archives/blog.html'
       title: "Apel Sophie Barat"
       description: "Apel Sophie Barat - Application Menu Restauration"
       url: siteUrl
@@ -112,7 +115,7 @@ module.exports =
     schoolmenu:
       query:
         relativeOutDirPath:
-          $startsWith: 'restauration/menus'
+          $startsWith: 'menus'
       templateData:
         prepareMenuTitle: (menu) ->
           return unless menu?
@@ -161,7 +164,7 @@ module.exports =
     repocloner:
       repos: [
           name: 'gssb-menus-repo'
-          path: 'src/documents/restauration/menus'
+          path: 'src/documents/menus'
           branch: 'master'
           url: 'https://github.com/apelsophiebarat/gssb-menus-repo.git'
       ]
@@ -221,13 +224,13 @@ module.exports =
     menus: ->
       query =
         relativeOutDirPath:
-          $startsWith: 'restauration/menus'
+          $startsWith: 'menus'
         layout: 'menu/default'
       @getCollection("html").findAllLive(query,[basename:-1])
     menusForRss: ->
       query =
         relativeOutDirPath:
-          $startsWith: 'restauration/menus'
+          $startsWith: 'menus'
         layout: 'menu/rss'
       #@getFiles(query,[basename:-1])
       collection = @getCollection("html").findAllLive(query,[basename:-1])
@@ -236,7 +239,7 @@ module.exports =
     menusForPartial: ->
       query =
         relativeOutDirPath:
-          $startsWith: 'restauration/menus'
+          $startsWith: 'menus'
         layout: 'menu/partial'
       #@getFiles(query,[basename:-1])
       collection = @getCollection("html").findAllLive(query,[basename:-1])
@@ -245,7 +248,7 @@ module.exports =
   environments:
     offline:
       enabledPlugins:
-        tumblr: false        
+        tumblr: false
         repocloner: false
         downloader: false
     development:
